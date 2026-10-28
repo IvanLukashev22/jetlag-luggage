@@ -518,8 +518,29 @@
   .cmp-price {
     font-family: "JetBrains Mono", ui-monospace, monospace;
     font-weight: 700;
-    font-size: 1.25rem;
+    font-size: 1.125rem;
     letter-spacing: -0.02em;
+    white-space: nowrap;
+  }
+
+  .size-card-head {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.65rem;
+  }
+
+  @media (min-width: 768px) {
+    .size-card-head {
+      flex-direction: row;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .cmp-price {
+      font-size: 1.25rem;
+    }
   }
 
   .cmp-na {
@@ -742,7 +763,7 @@
 </p>
 <div class="pt-2 font-mono text-[10px] text-subtext tracking-wider space-y-1">
 <p>• ТРЕХЗНАЧНЫЙ КОДОВЫЙ МЕХАНИЗМ</p>
-<p>• СЕРТИФИЦИРОВАНО ТРАНСПОРТНОЙ БЕЗОПАСНОСТЬЮ США</p>
+<p>• ОТКРЫВАЕТСЯ НА ДОСМОТРЕ БЕЗ ПОВРЕЖДЕНИЯ</p>
 </div>
 </div>
 <div class="space-y-4 reveal stagger-2">
@@ -915,7 +936,7 @@
 
 <div class="size-board reveal stagger-1">
 <article class="size-card">
-<div class="flex items-baseline justify-between gap-4">
+<div class="size-card-head">
 <div>
 <span class="font-mono text-[10px] tracking-widest uppercase text-subtext">Меньше</span>
 <p class="font-display text-3xl font-bold uppercase tracking-tight mt-1">Компакт</p>
@@ -931,7 +952,7 @@
 </article>
 
 <article class="size-card">
-<div class="flex items-baseline justify-between gap-4">
+<div class="size-card-head">
 <div>
 <span class="font-mono text-[10px] tracking-widest uppercase text-subtext">Больше</span>
 <p class="font-display text-3xl font-bold uppercase tracking-tight mt-1">Большой</p>
