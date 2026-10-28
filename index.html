@@ -13,14 +13,14 @@
     theme: {
       extend: {
         colors: {
-          // Cool silver ground + ink
-          white: '#C6C9CE',
+          // Logo palette: greige ground + ink
+          white: '#C9C9BD',
           black: '#000000',
-          surface: '#C6C9CE',
-          'surface-dim': '#B6B9BE',
-          borderline: '#A4A7AC',
+          surface: '#C9C9BD',
+          'surface-dim': '#BEBEB2',
+          borderline: '#AFAFA3',
           darkline: '#000000',
-          subtext: '#555860'
+          subtext: '#5C5C54'
         },
         fontFamily: {
           sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
@@ -39,10 +39,10 @@
   :root {
     --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
     --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
-    --jetlag-white: #C6C9CE;
+    --jetlag-white: #C9C9BD;
     --jetlag-black: #000000;
-    --jetlag-dim: #B6B9BE;
-    --jetlag-line: #A4A7AC;
+    --jetlag-dim: #BEBEB2;
+    --jetlag-line: #AFAFA3;
   }
 
   body {
@@ -82,7 +82,7 @@
     letter-spacing: -0.04em;
     line-height: 0.92;
     text-transform: uppercase;
-    color: #6E7278;
+    color: #7A7A70;
     -webkit-font-smoothing: antialiased;
   }
 
@@ -251,9 +251,9 @@
     background: linear-gradient(
       90deg,
       transparent 0%,
-      #A4A7AC 20%,
+      #AFAFA3 20%,
       #000000 50%,
-      #A4A7AC 80%,
+      #AFAFA3 80%,
       transparent 100%
     );
     background-size: 200% 100%;
@@ -424,7 +424,7 @@
     text-transform: uppercase;
     padding: 0.7rem 1.1rem;
     background: var(--jetlag-white);
-    color: #555860;
+    color: #5C5C54;
     border: 0;
     cursor: pointer;
     transition: background-color 0.35s var(--ease-out-expo), color 0.35s var(--ease-out-expo);
@@ -487,7 +487,7 @@
     font-size: 11px;
     letter-spacing: 0.1em;
     text-transform: uppercase;
-    color: #555860;
+    color: #5C5C54;
     font-weight: 400;
     white-space: nowrap;
   }
@@ -547,11 +547,11 @@
     font-size: 10px;
     letter-spacing: 0.14em;
     text-transform: uppercase;
-    color: #555860;
+    color: #5C5C54;
   }
 
   .cmp-na {
-    color: #6E7278;
+    color: #7A7A70;
   }
 
   .cmp-bar {
@@ -608,7 +608,7 @@
   }
 
   .channel-link:hover {
-    color: #6E7278;
+    color: #7A7A70;
     letter-spacing: -0.02em;
   }
 
@@ -618,7 +618,7 @@
   }
 
   .site-header.is-scrolled {
-    background-color: rgba(198, 201, 206, 0.86);
+    background-color: rgba(201, 201, 189, 0.86);
     backdrop-filter: blur(16px);
   }
 
