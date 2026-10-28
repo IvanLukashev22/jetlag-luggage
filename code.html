@@ -13,11 +13,14 @@
     theme: {
       extend: {
         colors: {
-          surface: '#FAFAFA',
-          'surface-dim': '#F4F4F5',
-          borderline: '#E5E5E5',
-          darkline: '#18181B',
-          subtext: '#71717A'
+          // Logo palette: greige ground + ink
+          white: '#C9C9BD',
+          black: '#000000',
+          surface: '#C9C9BD',
+          'surface-dim': '#BEBEB2',
+          borderline: '#AFAFA3',
+          darkline: '#000000',
+          subtext: '#5C5C54'
         },
         fontFamily: {
           sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
@@ -36,20 +39,24 @@
   :root {
     --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
     --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+    --jetlag-white: #C9C9BD;
+    --jetlag-black: #000000;
+    --jetlag-dim: #BEBEB2;
+    --jetlag-line: #AFAFA3;
   }
 
   body {
-    background-color: #FAFAFA;
-    color: #111111;
+    background-color: var(--jetlag-white);
+    color: var(--jetlag-black);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
   }
 
-  .hairline-b { border-bottom: 1px solid #E5E5E5; }
-  .hairline-t { border-top: 1px solid #E5E5E5; }
-  .hairline-r { border-right: 1px solid #E5E5E5; }
-  .hairline-l { border-left: 1px solid #E5E5E5; }
+  .hairline-b { border-bottom: 1px solid var(--jetlag-line); }
+  .hairline-t { border-top: 1px solid var(--jetlag-line); }
+  .hairline-r { border-right: 1px solid var(--jetlag-line); }
+  .hairline-l { border-left: 1px solid var(--jetlag-line); }
 
   .wordmark-jetlag {
     font-family: 'Inter', sans-serif;
@@ -75,7 +82,7 @@
     letter-spacing: -0.04em;
     line-height: 0.92;
     text-transform: uppercase;
-    color: #A1A1AA;
+    color: #7A7A70;
     -webkit-font-smoothing: antialiased;
   }
 
@@ -244,9 +251,9 @@
     background: linear-gradient(
       90deg,
       transparent 0%,
-      #c8c8cc 20%,
-      #0a0a0a 50%,
-      #c8c8cc 80%,
+      #AFAFA3 20%,
+      #000000 50%,
+      #AFAFA3 80%,
       transparent 100%
     );
     background-size: 200% 100%;
@@ -338,7 +345,7 @@
     content: "";
     position: absolute;
     inset: 0;
-    background: #fff;
+    background: var(--jetlag-white);
     transform: translateY(101%);
     transition: transform 0.5s var(--ease-out-expo);
     z-index: 0;
@@ -350,7 +357,7 @@
   }
 
   .btn-lux:hover {
-    color: #0a0a0a;
+    color: var(--jetlag-black);
   }
 
   .btn-lux:hover::before {
@@ -400,14 +407,14 @@
   }
 
   .spec-row:hover {
-    background-color: #EFEFEF;
+    background-color: var(--jetlag-dim);
     padding-left: 0.5rem;
   }
 
   /* ——— Comparison matrix ——— */
   .cmp-toggle {
     display: inline-flex;
-    border: 1px solid #E5E5E5;
+    border: 1px solid var(--jetlag-line);
   }
 
   .cmp-toggle button {
@@ -416,25 +423,25 @@
     letter-spacing: 0.12em;
     text-transform: uppercase;
     padding: 0.7rem 1.1rem;
-    background: #fff;
-    color: #71717A;
+    background: var(--jetlag-white);
+    color: #5C5C54;
     border: 0;
     cursor: pointer;
     transition: background-color 0.35s var(--ease-out-expo), color 0.35s var(--ease-out-expo);
   }
 
   .cmp-toggle button + button {
-    border-left: 1px solid #E5E5E5;
+    border-left: 1px solid var(--jetlag-line);
   }
 
   .cmp-toggle button.is-active {
-    background: #0a0a0a;
-    color: #fff;
+    background: var(--jetlag-black);
+    color: var(--jetlag-white);
   }
 
   .cmp-toggle button:hover:not(.is-active) {
-    color: #0a0a0a;
-    background: #F4F4F5;
+    color: var(--jetlag-black);
+    background: var(--jetlag-dim);
   }
 
   .cmp-scroll {
@@ -450,14 +457,14 @@
 
   .cmp-table th,
   .cmp-table td {
-    border-bottom: 1px solid #E5E5E5;
+    border-bottom: 1px solid var(--jetlag-line);
     vertical-align: top;
     text-align: left;
   }
 
   .cmp-table thead th {
     padding: 1.25rem 1rem 1.5rem;
-    background: #FAFAFA;
+    background: var(--jetlag-white);
     position: sticky;
     top: 5rem;
     z-index: 2;
@@ -480,7 +487,7 @@
     font-size: 11px;
     letter-spacing: 0.1em;
     text-transform: uppercase;
-    color: #71717A;
+    color: #5C5C54;
     font-weight: 400;
     white-space: nowrap;
   }
@@ -491,12 +498,12 @@
     font-family: "JetBrains Mono", ui-monospace, monospace;
     font-size: 12px;
     letter-spacing: 0.02em;
-    color: #111;
+    color: var(--jetlag-black);
   }
 
   .cmp-table tbody tr:hover th,
   .cmp-table tbody tr:hover td {
-    background: #F4F4F5;
+    background: var(--jetlag-dim);
   }
 
   .cmp-table tbody tr.cmp-cta:hover th,
@@ -507,7 +514,7 @@
   .cmp-swatch {
     width: 28px;
     height: 28px;
-    border: 1px solid #D4D4D4;
+    border: 1px solid var(--jetlag-line);
     display: inline-block;
   }
 
@@ -521,14 +528,14 @@
     font-size: 1.75rem;
     letter-spacing: -0.03em;
     white-space: nowrap;
-    color: #0a0a0a;
+    color: var(--jetlag-black);
     line-height: 1;
   }
 
   .size-card-price {
     margin-top: auto;
     padding: 1.5rem 0 0;
-    border-top: 2px solid #0a0a0a;
+    border-top: 2px solid var(--jetlag-black);
     display: flex;
     align-items: baseline;
     justify-content: space-between;
@@ -540,16 +547,16 @@
     font-size: 10px;
     letter-spacing: 0.14em;
     text-transform: uppercase;
-    color: #71717A;
+    color: #5C5C54;
   }
 
   .cmp-na {
-    color: #A1A1AA;
+    color: #7A7A70;
   }
 
   .cmp-bar {
     height: 4px;
-    background: #E5E5E5;
+    background: var(--jetlag-line);
     margin-top: 0.55rem;
     overflow: hidden;
   }
@@ -557,13 +564,13 @@
   .cmp-bar > span {
     display: block;
     height: 100%;
-    background: #0a0a0a;
+    background: var(--jetlag-black);
   }
 
   .size-board {
     display: grid;
     grid-template-columns: 1fr;
-    border-top: 1px solid #E5E5E5;
+    border-top: 1px solid var(--jetlag-line);
   }
 
   @media (min-width: 768px) {
@@ -582,7 +589,7 @@
   @media (min-width: 768px) {
     .size-card:first-child {
       padding-right: 2.5rem;
-      border-right: 1px solid #E5E5E5;
+      border-right: 1px solid var(--jetlag-line);
     }
 
     .size-card:last-child {
@@ -601,7 +608,7 @@
   }
 
   .channel-link:hover {
-    color: #a1a1aa;
+    color: #7A7A70;
     letter-spacing: -0.02em;
   }
 
@@ -611,7 +618,7 @@
   }
 
   .site-header.is-scrolled {
-    background-color: rgba(250, 250, 250, 0.86);
+    background-color: rgba(201, 201, 189, 0.86);
     backdrop-filter: blur(16px);
   }
 
@@ -633,16 +640,16 @@
 </head>
 <body class="selection:bg-black selection:text-white">
 <!-- BEGIN: Minimal Editorial Navigation -->
-<header class="site-header w-full bg-[#FAFAFA]/90 backdrop-blur-md sticky top-0 z-50 hairline-b">
+<header class="site-header w-full bg-white/90 backdrop-blur-md sticky top-0 z-50 hairline-b">
 <div class="max-w-[1680px] mx-auto px-6 sm:px-10 lg:px-16 h-16 md:h-20 flex items-center justify-between">
 <a class="group flex items-center gap-3" href="#">
 <span class="wordmark-jetlag text-2xl lg:text-3xl tracking-tightest lowercase text-black transition-transform group-hover:scale-[0.97] duration-300">jetlag</span>
 </a>
 <nav class="hidden md:flex items-center space-x-10 text-[11px] font-mono tracking-widestmono uppercase text-subtext">
-<a class="nav-link hover:text-black transition-colors duration-200" href="#collection">[ КАТАЛОГ ]</a>
 <a class="nav-link hover:text-black transition-colors duration-200" href="#material">[ МАТЕРИАЛ И ИНЖЕНЕРИЯ ]</a>
+<a class="nav-link hover:text-black transition-colors duration-200" href="#collection">[ КАТАЛОГ ]</a>
 <a class="nav-link hover:text-black transition-colors duration-200" href="#sizing">[ СРАВНЕНИЕ ]</a>
-<a class="nav-link hover:text-black transition-colors duration-200" href="#order">[ ЗАКАЗ ]</a>
+<a class="nav-link hover:text-black transition-colors duration-200" href="#order">[ КОНТАКТЫ ]</a>
 </nav>
 <div class="flex items-center gap-6">
 <a class="btn-lux inline-flex items-center justify-center gap-2 px-5 py-2.5 bg-black text-white font-mono text-[11px] tracking-widest uppercase" href="#order">
@@ -1015,7 +1022,7 @@
 <!-- END: Section 03 -->
 
 <!-- BEGIN: Section 04 — Footer & Order -->
-<footer class="w-full bg-[#FAFAFA] pt-24 pb-16" id="order">
+<footer class="w-full bg-white pt-24 pb-16" id="order">
 <div class="max-w-[1680px] mx-auto px-6 sm:px-10 lg:px-16">
 <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24">
 <div class="lg:col-span-6 space-y-8 reveal">
