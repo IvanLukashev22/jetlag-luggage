@@ -518,29 +518,15 @@
   .cmp-price {
     font-family: "JetBrains Mono", ui-monospace, monospace;
     font-weight: 700;
-    font-size: 1.125rem;
+    font-size: 1.25rem;
     letter-spacing: -0.02em;
     white-space: nowrap;
   }
 
-  .size-card-head {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.65rem;
-  }
-
-  @media (min-width: 768px) {
-    .size-card-head {
-      flex-direction: row;
-      align-items: flex-end;
-      justify-content: space-between;
-      gap: 1rem;
-    }
-
-    .cmp-price {
-      font-size: 1.25rem;
-    }
+  .size-card-price {
+    margin-top: 1.25rem;
+    padding-top: 1rem;
+    border-top: 1px solid #E5E5E5;
   }
 
   .cmp-na {
@@ -936,12 +922,9 @@
 
 <div class="size-board reveal stagger-1">
 <article class="size-card">
-<div class="size-card-head">
 <div>
 <span class="font-mono text-[10px] tracking-widest uppercase text-subtext">Меньше</span>
 <p class="font-display text-3xl font-bold uppercase tracking-tight mt-1">Компакт</p>
-</div>
-<span class="cmp-price">от 38 000 ₽</span>
 </div>
 <ul class="space-y-0 font-mono text-xs mt-6">
 <li class="spec-row flex justify-between py-2.5 hairline-b"><span class="text-subtext">Габариты</span><span>55 × 40 × 20 см</span></li>
@@ -949,15 +932,13 @@
 <li class="spec-row flex justify-between py-2.5 hairline-b"><span class="text-subtext">Вес</span><span>4.1 кг</span></li>
 <li class="spec-row flex justify-between py-2.5 hairline-b"><span class="text-subtext">Оттенки</span><span>Base · Standart · Premium</span></li>
 </ul>
+<p class="size-card-price cmp-price">от 38 000 ₽</p>
 </article>
 
 <article class="size-card">
-<div class="size-card-head">
 <div>
 <span class="font-mono text-[10px] tracking-widest uppercase text-subtext">Больше</span>
 <p class="font-display text-3xl font-bold uppercase tracking-tight mt-1">Большой</p>
-</div>
-<span class="cmp-price">от 54 000 ₽</span>
 </div>
 <ul class="space-y-0 font-mono text-xs mt-6">
 <li class="spec-row flex justify-between py-2.5 hairline-b"><span class="text-subtext">Габариты</span><span>76 × 51 × 28 см</span></li>
@@ -965,6 +946,7 @@
 <li class="spec-row flex justify-between py-2.5 hairline-b"><span class="text-subtext">Вес</span><span>5.8 кг</span></li>
 <li class="spec-row flex justify-between py-2.5 hairline-b"><span class="text-subtext">Оттенки</span><span>Base · Standart</span></li>
 </ul>
+<p class="size-card-price cmp-price">от 54 000 ₽</p>
 </article>
 </div>
 
