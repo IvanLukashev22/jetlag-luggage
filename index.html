@@ -1,0 +1,884 @@
+<!DOCTYPE html>
+<html class="scroll-smooth" lang="ru">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>jetlag — алюминиевые чемоданы авиационного класса</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600;700&amp;family=Inter:wght@300;400;500;600;700;800;900&amp;family=Space+Grotesk:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          surface: '#FAFAFA',
+          'surface-dim': '#F4F4F5',
+          borderline: '#E5E5E5',
+          darkline: '#18181B',
+          subtext: '#71717A'
+        },
+        fontFamily: {
+          sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
+          display: ['"Space Grotesk"', 'Inter', 'sans-serif'],
+          mono: ['"JetBrains Mono"', 'ui-monospace', 'monospace']
+        },
+        letterSpacing: {
+          tightest: '-0.04em',
+          widestmono: '0.15em'
+        }
+      }
+    }
+  }
+</script>
+<style>
+  :root {
+    --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+    --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+  }
+
+  body {
+    background-color: #FAFAFA;
+    color: #111111;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  .hairline-b { border-bottom: 1px solid #E5E5E5; }
+  .hairline-t { border-top: 1px solid #E5E5E5; }
+  .hairline-r { border-right: 1px solid #E5E5E5; }
+  .hairline-l { border-left: 1px solid #E5E5E5; }
+
+  .wordmark-jetlag {
+    font-family: 'Inter', sans-serif;
+    letter-spacing: -0.06em;
+    font-weight: 800;
+  }
+
+  /* ——— Hero type ——— */
+  .hero-display {
+    font-family: 'Space Grotesk', Inter, sans-serif;
+    font-weight: 700;
+    letter-spacing: -0.04em;
+    line-height: 0.92;
+  }
+
+  /* Grey hero line — Golos Text: drawn for Cyrillic, neo-grotesk */
+  .hero-sub {
+    display: block;
+    font-family: 'Golos Text', Inter, sans-serif;
+    font-weight: 500;
+    font-size: clamp(2.35rem, 6.2vw, 5.75rem);
+    letter-spacing: -0.02em;
+    line-height: 0.98;
+    text-transform: uppercase;
+    color: #A1A1AA;
+    font-feature-settings: "kern" on, "liga" on;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .manifesto-lead {
+    font-family: Inter, sans-serif;
+    font-weight: 300;
+    letter-spacing: -0.02em;
+  }
+
+  /* ——— Reveal system ——— */
+  .reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition:
+      opacity 1.1s var(--ease-out-expo),
+      transform 1.1s var(--ease-out-expo);
+    will-change: opacity, transform;
+  }
+
+  .reveal.is-in {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .reveal-clip {
+    overflow: hidden;
+  }
+
+  .reveal-clip > * {
+    opacity: 0;
+    transform: translateY(110%);
+    transition:
+      opacity 1s var(--ease-out-expo),
+      transform 1.15s var(--ease-out-expo);
+    will-change: opacity, transform;
+  }
+
+  .reveal-clip.is-in > * {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .reveal-scale {
+    opacity: 0;
+    transform: scale(1.06);
+    transition:
+      opacity 1.4s var(--ease-out-quart),
+      transform 1.6s var(--ease-out-expo);
+    will-change: opacity, transform;
+  }
+
+  .reveal-scale.is-in {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  .stagger-1 { transition-delay: 0.08s; }
+  .stagger-2 { transition-delay: 0.18s; }
+  .stagger-3 { transition-delay: 0.28s; }
+  .stagger-4 { transition-delay: 0.38s; }
+  .stagger-5 { transition-delay: 0.5s; }
+  .stagger-6 { transition-delay: 0.62s; }
+
+  .reveal-clip.stagger-1 > * { transition-delay: 0.12s; }
+  .reveal-clip.stagger-2 > * { transition-delay: 0.28s; }
+  .reveal-clip.stagger-3 > * { transition-delay: 0.44s; }
+  .reveal-clip.stagger-4 > * { transition-delay: 0.58s; }
+
+  /* ——— Ambient ——— */
+  @keyframes grain {
+    0%, 100% { transform: translate(0, 0); }
+    10% { transform: translate(-2%, -3%); }
+    30% { transform: translate(3%, 1%); }
+    50% { transform: translate(-1%, 2%); }
+    70% { transform: translate(2%, -1%); }
+    90% { transform: translate(-3%, 2%); }
+  }
+
+  .grain::after {
+    content: "";
+    pointer-events: none;
+    position: absolute;
+    inset: -20%;
+    opacity: 0.035;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    animation: grain 8s steps(6) infinite;
+    mix-blend-mode: multiply;
+  }
+
+  @keyframes shimmer {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+  }
+
+  .metal-line {
+    height: 1px;
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      #c8c8cc 20%,
+      #0a0a0a 50%,
+      #c8c8cc 80%,
+      transparent 100%
+    );
+    background-size: 200% 100%;
+    opacity: 0;
+    transform: scaleX(0.4);
+    transition: opacity 1s var(--ease-out-expo), transform 1.2s var(--ease-out-expo);
+  }
+
+  .metal-line.is-in {
+    opacity: 1;
+    transform: scaleX(1);
+    animation: shimmer 4.5s ease-in-out 1.2s infinite;
+  }
+
+  @keyframes float-soft {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-6px); }
+  }
+
+  .hero-visual {
+    position: relative;
+  }
+
+  .hero-visual img {
+    transition: transform 1.8s var(--ease-out-expo), filter 0.8s ease;
+  }
+
+  .hero-visual:hover img {
+    transform: scale(1.04);
+    filter: grayscale(0.85) brightness(1) contrast(1.2);
+  }
+
+  .hero-visual .scan {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: linear-gradient(
+      180deg,
+      transparent 0%,
+      rgba(255,255,255,0.04) 45%,
+      transparent 55%
+    );
+    background-size: 100% 200%;
+    animation: scan 6s ease-in-out infinite;
+    opacity: 0;
+    transition: opacity 0.8s ease;
+  }
+
+  .hero-visual.is-in .scan {
+    opacity: 1;
+  }
+
+  @keyframes scan {
+    0% { background-position: 0% -40%; }
+    100% { background-position: 0% 140%; }
+  }
+
+  /* ——— Nav / CTA ——— */
+  .nav-link {
+    position: relative;
+  }
+
+  .nav-link::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -4px;
+    width: 100%;
+    height: 1px;
+    background: currentColor;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.45s var(--ease-out-expo);
+  }
+
+  .nav-link:hover::after {
+    transform: scaleX(1);
+  }
+
+  .btn-lux {
+    position: relative;
+    overflow: hidden;
+    transition: color 0.45s var(--ease-out-expo), background-color 0.45s var(--ease-out-expo);
+  }
+
+  .btn-lux::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: #fff;
+    transform: translateY(101%);
+    transition: transform 0.5s var(--ease-out-expo);
+    z-index: 0;
+  }
+
+  .btn-lux > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  .btn-lux:hover {
+    color: #0a0a0a;
+  }
+
+  .btn-lux:hover::before {
+    transform: translateY(0);
+  }
+
+  .btn-arrow {
+    display: inline-block;
+    transition: transform 0.45s var(--ease-out-expo);
+  }
+
+  .btn-lux:hover .btn-arrow {
+    transform: translateX(6px);
+  }
+
+  /* ——— Catalog cards ——— */
+  .cat-item {
+    transition: transform 0.7s var(--ease-out-expo);
+  }
+
+  .cat-item .cat-media {
+    overflow: hidden;
+  }
+
+  .cat-item .cat-media img {
+    transition: transform 1.2s var(--ease-out-expo), filter 0.7s ease;
+  }
+
+  .cat-item:hover .cat-media img {
+    transform: scale(1.06);
+  }
+
+  .cat-item .cat-rule {
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.7s var(--ease-out-expo);
+  }
+
+  .cat-item.is-in .cat-rule,
+  .cat-item:hover .cat-rule {
+    transform: scaleX(1);
+  }
+
+  /* ——— Spec rows ——— */
+  .spec-row {
+    transition: background-color 0.35s ease, padding-left 0.45s var(--ease-out-expo);
+  }
+
+  .spec-row:hover {
+    background-color: #EFEFEF;
+    padding-left: 0.5rem;
+  }
+
+  /* ——— Channel links ——— */
+  .channel-link {
+    position: relative;
+    display: block;
+    font-family: "SF Pro Text", "SF Pro Display", system-ui, -apple-system, BlinkMacSystemFont,
+      "Segoe UI", Roboto, "Helvetica Neue", Helvetica, Arial, "Lucida Grande", Ubuntu, Cantarell,
+      "Fira Sans", "Noto Sans", sans-serif;
+    transition: color 0.5s var(--ease-out-expo), letter-spacing 0.6s var(--ease-out-expo);
+  }
+
+  .channel-link:hover {
+    color: #a1a1aa;
+    letter-spacing: -0.02em;
+  }
+
+  /* ——— Header ——— */
+  .site-header {
+    transition: background-color 0.4s ease, border-color 0.4s ease, backdrop-filter 0.4s ease;
+  }
+
+  .site-header.is-scrolled {
+    background-color: rgba(250, 250, 250, 0.86);
+    backdrop-filter: blur(16px);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .reveal,
+    .reveal-clip > *,
+    .reveal-scale,
+    .metal-line,
+    .cat-item,
+    .btn-lux::before,
+    .hero-visual img {
+      transition: none !important;
+      animation: none !important;
+      opacity: 1 !important;
+      transform: none !important;
+    }
+  }
+</style>
+</head>
+<body class="selection:bg-black selection:text-white">
+<!-- BEGIN: Minimal Editorial Navigation -->
+<header class="site-header w-full bg-[#FAFAFA]/90 backdrop-blur-md sticky top-0 z-50 hairline-b">
+<div class="max-w-[1680px] mx-auto px-6 sm:px-10 lg:px-16 h-20 flex items-center justify-between">
+<a class="group flex items-center gap-3" href="#">
+<span class="wordmark-jetlag text-2xl lg:text-3xl tracking-tightest lowercase text-black transition-transform group-hover:scale-[0.97] duration-300">jetlag</span>
+</a>
+<nav class="hidden md:flex items-center space-x-10 text-[11px] font-mono tracking-widestmono uppercase text-subtext">
+<a class="nav-link hover:text-black transition-colors duration-200" href="#collection">[ КОЛЛЕКЦИЯ ]</a>
+<a class="nav-link hover:text-black transition-colors duration-200" href="#material">[ МАТЕРИАЛ И ХАРАКТЕРИСТИКИ ]</a>
+<a class="nav-link hover:text-black transition-colors duration-200" href="#sizing">[ РАЗМЕРЫ ]</a>
+<a class="nav-link hover:text-black transition-colors duration-200" href="#order">[ ЗАКАЗ ]</a>
+</nav>
+<div class="flex items-center gap-6">
+<span class="hidden sm:inline-block font-mono text-[10px] tracking-widest uppercase text-subtext">ИЗДАНИЕ 2026</span>
+<a class="btn-lux inline-flex items-center justify-center gap-2 px-5 py-2.5 bg-black text-white font-mono text-[11px] tracking-widest uppercase" href="#order">
+<span>ПРЕДЗАКАЗ</span>
+</a>
+</div>
+</div>
+</header>
+<!-- END: Minimal Editorial Navigation -->
+
+<!-- BEGIN: Hero Section -->
+<section class="w-full relative hairline-b overflow-hidden pt-12 md:pt-16 pb-20 lg:pb-28 grain">
+<div class="max-w-[1680px] mx-auto px-6 sm:px-10 lg:px-16">
+<!-- Meta Header Line -->
+<div class="reveal flex flex-col sm:flex-row sm:items-center justify-between font-mono text-[11px] tracking-widest text-subtext uppercase pb-6 hairline-b gap-2">
+<span>(00 / ВВЕДЕНИЕ) JETLAG — СИСТЕМЫ ДЛЯ ПЕРЕЛЁТОВ</span>
+<span>БЕРЛИН — ТОКИО — МОСКВА</span>
+<span class="text-black font-medium">[ 100% АВИАЦИОННЫЙ СПЛАВ 6061-T6 ]</span>
+</div>
+
+<!-- Big Headline Hero Statement — same hierarchy as EN: bold + normal grey -->
+<div class="py-12 md:py-16">
+<h1 class="hero-display text-5xl sm:text-7xl lg:text-[104px] uppercase text-black max-w-6xl">
+<span class="reveal-clip stagger-1 block"><span>JETLAG</span></span>
+<span class="reveal-clip stagger-2 block mt-3 sm:mt-4">
+<span class="hero-sub">Алюминиевый<br>монолит</span>
+</span>
+</h1>
+<div class="reveal-clip stagger-3 mt-6 md:mt-8">
+<p class="font-sans text-lg sm:text-xl md:text-2xl font-light text-neutral-600 max-w-2xl leading-snug tracking-tight">
+Цельнотянутый корпус. Без молний. Без компромиссов — только металл и маршрут.
+</p>
+</div>
+<div class="metal-line reveal mt-10 md:mt-14 max-w-xl stagger-4"></div>
+</div>
+
+<!-- Hero Main Visual + Editorial Detail Frame -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-end mt-4">
+<div class="lg:col-span-8 relative bg-neutral-900 aspect-[16/10] overflow-hidden group hero-visual reveal-scale">
+<img alt="jetlag — алюминиевый чемодан" class="w-full h-full object-cover grayscale brightness-95 contrast-125" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDa3pW-vrTHMs83__AQxmd67l9nTF_Q2T5yuWXg4UvMVlJ-68dt4E8ZUNtcCgQoKi_FRqBGA6rqL8anJp6bbTOkGFrlUtCKr-u1xGlcFppZD8n1k9zeit3_U-3xhbm405fXigzoqC2MSDK3H3emX_L7g_QuJDk6n3uxCyDgXibrE50Y28Kjb_wLjLX4ftH8Wsi00CpfBfTb0Q6ThoJbJFA0BdL2MeYKGMROneclEPk"/>
+<div class="scan"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+<div class="absolute bottom-6 left-6 right-6 flex justify-between items-end text-white font-mono text-xs reveal stagger-5">
+<div>
+<p class="font-medium text-sm tracking-wide">JETLAG СЕРИЯ 01 // СЫРОЙ АЛЮМИНИЙ</p>
+<p class="text-neutral-400 text-[11px] mt-0.5">55 × 40 × 20 СМ — РУЧНАЯ КЛАДЬ</p>
+</div>
+<span class="hidden sm:inline text-neutral-400 text-[10px] tracking-widest">[ 4.1 КГ / БЕЗ МОЛНИЙ ]</span>
+</div>
+</div>
+
+<div class="lg:col-span-4 flex flex-col justify-between h-full space-y-10 lg:pl-6">
+<div class="space-y-6 reveal stagger-3">
+<span class="font-mono text-xs text-subtext tracking-widest uppercase block">[ МАНИФЕСТ JETLAG ]</span>
+<p class="manifesto-lead text-xl sm:text-2xl leading-snug text-neutral-900">
+Один цельный каркас из авиационного сплава. Ни хрупких молний, ни синтетической оболочки — только монолит, который переживает багажную ленту.
+</p>
+<p class="text-sm text-subtext leading-relaxed font-sans">
+Создан выдерживать удары при погрузке, перепады давления на эшелоне FL370 и миллионы оборотов бесшумных опор Hinomoto.
+</p>
+</div>
+<div class="pt-6 hairline-t space-y-4 reveal stagger-4">
+<a class="btn-lux w-full py-4 bg-black text-white flex items-center justify-between px-6 font-mono text-xs tracking-widest uppercase" href="#collection">
+<span>ВЫБРАТЬ МОДЕЛЬ</span>
+<span class="btn-arrow">→</span>
+</a>
+<div class="flex justify-between items-center font-mono text-[10px] text-subtext tracking-wider gap-4">
+<span>БЕСПЛАТНАЯ ДОСТАВКА В ЛЮБУЮ ТОЧКУ РОССИИ</span>
+<span class="shrink-0">УДОБНЫМ СПОСОБОМ</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- END: Hero Section -->
+
+<!-- BEGIN: Section 01 — Philosophy & Material -->
+<section class="w-full hairline-b py-24 lg:py-32 bg-white" id="material">
+<div class="max-w-[1680px] mx-auto px-6 sm:px-10 lg:px-16">
+<div class="flex flex-col md:flex-row md:items-end justify-between pb-8 hairline-b gap-4 reveal">
+<div>
+<span class="font-mono text-[11px] tracking-widest uppercase text-subtext">[ 01 / МАТЕРИАЛ И ИНЖЕНЕРИЯ ]</span>
+<h2 class="text-4xl sm:text-6xl font-bold font-display tracking-tightest uppercase text-black mt-3">
+100% АВИАЦИОННЫЙ АЛЮМИНИЙ
+</h2>
+</div>
+<div class="font-mono text-xs text-subtext text-left md:text-right tracking-wider">
+ПРОМЫШЛЕННЫЙ ДОПУСК // ±0.1 ММ
+</div>
+</div>
+
+<div class="grid grid-cols-2 lg:grid-cols-4 divide-y lg:divide-y-0 lg:divide-x divide-neutral-200 hairline-b">
+<div class="py-10 lg:pr-8 pr-4 reveal stagger-1">
+<div class="text-5xl lg:text-7xl font-bold font-display tracking-tightest text-black">6061-T6</div>
+<p class="font-mono text-[11px] text-subtext uppercase tracking-widest mt-3">СПЛАВ КОРПУСА</p>
+<p class="text-xs text-neutral-500 mt-1 font-sans">Глубокое анодирование поверхности против микроцарапин.</p>
+</div>
+<div class="py-10 lg:px-8 px-4 reveal stagger-2">
+<div class="text-5xl lg:text-7xl font-bold font-display tracking-tightest text-black">150<span class="text-neutral-400 font-light">КГ</span></div>
+<p class="font-mono text-[11px] text-subtext uppercase tracking-widest mt-3">СТАТИЧЕСКАЯ НАГРУЗКА</p>
+<p class="text-xs text-neutral-500 mt-1 font-sans">Усиленные штампованные ребра жесткости без деформаций.</p>
+</div>
+<div class="py-10 lg:px-8 pr-4 reveal stagger-3">
+<div class="text-5xl lg:text-7xl font-bold font-display tracking-tightest text-black">360°</div>
+<p class="font-mono text-[11px] text-subtext uppercase tracking-widest mt-3">HINOMOTO SILENT-RUN</p>
+<p class="text-xs text-neutral-500 mt-1 font-sans">Двойные японские полиуретановые колесные блоки.</p>
+</div>
+<div class="py-10 lg:pl-8 px-4 reveal stagger-4">
+<div class="text-5xl lg:text-7xl font-bold font-display tracking-tightest text-black">24/7</div>
+<p class="font-mono text-[11px] text-subtext uppercase tracking-widest mt-3">СЛУЖБА СЕРВИСА</p>
+<p class="text-xs text-neutral-500 mt-1 font-sans">На связи круглосуточно. Гарантия долгих лет службы без поломок.</p>
+</div>
+</div>
+
+<div class="grid grid-cols-1 md:grid-cols-3 gap-12 lg:gap-16 pt-16">
+<div class="space-y-4 reveal stagger-1">
+<span class="text-3xl font-display font-light text-neutral-300">01 /</span>
+<h3 class="text-lg font-bold font-display uppercase tracking-tight text-black">БЕСКАРКАСНЫЕ ЗАМКИ TSA</h3>
+<p class="text-sm text-neutral-600 leading-relaxed font-sans">
+Никаких текстильных застежек и прорезаемых молний. Двойные механические ригели из стали и алюминия фиксируют створки чемодана с резиновым влагозащитным контуром.
+</p>
+<div class="pt-2 font-mono text-[10px] text-subtext tracking-wider space-y-1">
+<p>• ТРЕХЗНАЧНЫЙ КОДОВЫЙ МЕХАНИЗМ</p>
+<p>• СЕРТИФИЦИРОВАНО ТРАНСПОРТНОЙ БЕЗОПАСНОСТЬЮ США</p>
+</div>
+</div>
+<div class="space-y-4 reveal stagger-2">
+<span class="text-3xl font-display font-light text-neutral-300">02 /</span>
+<h3 class="text-lg font-bold font-display uppercase tracking-tight text-black">УСИЛЕННЫЕ ЛИТЫЕ УГЛЫ</h3>
+<p class="text-sm text-neutral-600 leading-relaxed font-sans">
+Ключевые точки удара при погрузке защищены массивными монолитными накладками на стальных заклепках. Чемодан сохраняет идеальную геометрию годами.
+</p>
+<div class="pt-2 font-mono text-[10px] text-subtext tracking-wider space-y-1">
+<p>• ТОЛЩИНА НАКЛАДОК 2.0 ММ</p>
+<p>• РУЧНАЯ ЗАКЛЕПОЧНАЯ СБОРКА</p>
+</div>
+</div>
+<div class="space-y-4 reveal stagger-3">
+<span class="text-3xl font-display font-light text-neutral-300">03 /</span>
+<h3 class="text-lg font-bold font-display uppercase tracking-tight text-black">ТЕЛЕСКОПИЧЕСКИЙ ПРИВОД</h3>
+<p class="text-sm text-neutral-600 leading-relaxed font-sans">
+Бесступенчатая плавная регулировка высоты выдвижной ручки без люфта. Эргономичная рукоятка с демпфером для максимально комфортного управления на ходу.
+</p>
+<div class="pt-2 font-mono text-[10px] text-subtext tracking-wider space-y-1">
+<p>• 4 СТУПЕНИ ФИКСАЦИИ ВЫСОТЫ</p>
+<p>• СТАТИЧЕСКАЯ УСТОЙЧИВОСТЬ К ИЗГИБУ</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- END: Section 01 -->
+
+<!-- BEGIN: Section 02 — Collection -->
+<section class="w-full hairline-b py-24 lg:py-32" id="collection">
+<div class="max-w-[1680px] mx-auto px-6 sm:px-10 lg:px-16">
+<div class="flex flex-col md:flex-row md:items-end justify-between pb-8 hairline-b gap-4 reveal">
+<div>
+<span class="font-mono text-[11px] tracking-widest uppercase text-subtext">[ 02 / КАТАЛОГ JETLAG ]</span>
+<h2 class="text-4xl sm:text-6xl font-bold font-display tracking-tightest uppercase text-black mt-3">
+КАТАЛОГ МОДЕЛЕЙ
+</h2>
+</div>
+<div class="flex items-center gap-2 font-mono text-xs">
+<span class="text-subtext">ФИЛЬТР:</span>
+<button class="px-3 py-1 bg-black text-white cursor-pointer" id="btn-all" onclick="filterCatalog('all')">ВСЕ (4)</button>
+<button class="px-3 py-1 bg-white border border-neutral-300 text-neutral-600 hover:text-black cursor-pointer" id="btn-s" onclick="filterCatalog('s')">КАБИНА S</button>
+<button class="px-3 py-1 bg-white border border-neutral-300 text-neutral-600 hover:text-black cursor-pointer" id="btn-l" onclick="filterCatalog('l')">БАГАЖ L</button>
+</div>
+</div>
+
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-10 pt-12">
+<article class="cat-item cat-s flex flex-col justify-between group reveal stagger-1">
+<div>
+<div class="cat-media bg-[#EEEEEE] aspect-[3/4] relative mb-6">
+<img alt="jetlag S-01 Silver Cabin" class="w-full h-full object-cover grayscale contrast-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDbs4ncutaDTTEWzBoH7HaKDwAs7ZM8hAfB8-E_A5pRqKod9mIWa_VYVitOWbPgZ5r8ZOSSJrgpLZQ6n-1SKxnC6tVgPmdd6uJRs-lLXS7mDLNv8RmVz2u2QVSs4qQKvDqoB3dHJFupNkgVNe_oyWisZRN2MG85ktjfegIU-FARcW3BDbWXzi786WFVsAQkH6D4lM8ewPz_s4egCXf8qQNtszQ7cNK1g7PWojfj6VE"/>
+<span class="absolute top-4 left-4 font-mono text-[10px] bg-black text-white px-2 py-1 uppercase tracking-wider">КАБИНА S</span>
+</div>
+<span class="font-mono text-[10px] text-subtext uppercase tracking-widest block">55 × 40 × 20 СМ • 35 Л</span>
+<h3 class="text-xl font-bold font-display uppercase tracking-tight text-black mt-1">JETLAG S-01 SILVER</h3>
+<p class="text-xs text-neutral-500 mt-2 leading-relaxed font-sans">
+Классический чистый серебристый анодированный алюминий. Отделение под 16" ноутбук.
+</p>
+</div>
+<div class="pt-6 mt-6 hairline-t flex items-center justify-between relative">
+<span class="absolute top-0 left-0 right-0 h-px bg-black cat-rule origin-left"></span>
+<span class="font-mono text-base font-bold text-black">38 000 ₽</span>
+<a class="font-mono text-xs tracking-wider uppercase text-black hover:opacity-60 transition-opacity" href="#order" onclick="selectModel('JETLAG S-01 SILVER CABIN (38 000 ₽)')">
+ВЫБРАТЬ →
+</a>
+</div>
+</article>
+
+<article class="cat-item cat-s flex flex-col justify-between group reveal stagger-2">
+<div>
+<div class="cat-media bg-[#1C1C1E] aspect-[3/4] relative mb-6">
+<img alt="jetlag S-02 Stealth Black" class="w-full h-full object-cover grayscale brightness-75 contrast-125" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCszta17TrlaT4VosOxWkh1OlvyZvS7HMELtkAdjRkuaqnmj5NHnIomCfDAUTkvvLPTyVc96JnHRX11Qn_JcolJ5o4kOXrSx40So58SbBmDQawXjAyQC9ckoThh4KUJKbIFHSjRnQyRKnjkTmnOylwx_1WuIkcS8oW06TTMr8y5KcYIK0nWdd5nKTJdFQ0CIIJS8uOneYbt46cdJREmILnj3ZbU7_WdX_Kp0AQ5700"/>
+<span class="absolute top-4 left-4 font-mono text-[10px] bg-neutral-800 text-white px-2 py-1 uppercase tracking-wider">КАБИНА S</span>
+</div>
+<span class="font-mono text-[10px] text-subtext uppercase tracking-widest block">55 × 40 × 20 СМ • 35 Л</span>
+<h3 class="text-xl font-bold font-display uppercase tracking-tight text-black mt-1">JETLAG S-02 STEALTH</h3>
+<p class="text-xs text-neutral-500 mt-2 leading-relaxed font-sans">
+Глубокое черное матовое анодирование. Полностью черная фурнитура и заклепки.
+</p>
+</div>
+<div class="pt-6 mt-6 hairline-t flex items-center justify-between relative">
+<span class="absolute top-0 left-0 right-0 h-px bg-black cat-rule origin-left"></span>
+<span class="font-mono text-base font-bold text-black">42 000 ₽</span>
+<a class="font-mono text-xs tracking-wider uppercase text-black hover:opacity-60 transition-opacity" href="#order" onclick="selectModel('JETLAG S-02 STEALTH BLACK CABIN (42 000 ₽)')">
+ВЫБРАТЬ →
+</a>
+</div>
+</article>
+
+<article class="cat-item cat-s flex flex-col justify-between group reveal stagger-3">
+<div>
+<div class="cat-media bg-[#E2E2E2] aspect-[3/4] relative mb-6">
+<img alt="jetlag S-03 Titanium Grey" class="w-full h-full object-cover grayscale contrast-125" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCoqQ28NSLF2La_SaqR2J-V9tW5p_CVCL4jN8JPAC3aFBXK5Ih-TvBgVTM5gcBq8OlBURK0qge76bnZ081D8UOJ2aAdhWUh6yvssGUECFiZYzw01XiJjWy9n5lTXnsT_eN1TUNbiMXS54jSMr0gkM1qvb1-yGU62oMIMfPvE-2xNdtTTTQckj89aMOkfsa17FigpynvzenOM58QSQ_hKTpP-VxSRMohvMRWhZeP314"/>
+<span class="absolute top-4 left-4 font-mono text-[10px] bg-black text-white px-2 py-1 uppercase tracking-wider">КАБИНА S</span>
+</div>
+<span class="font-mono text-[10px] text-subtext uppercase tracking-widest block">55 × 40 × 20 СМ • 35 Л</span>
+<h3 class="text-xl font-bold font-display uppercase tracking-tight text-black mt-1">JETLAG S-03 TITANIUM</h3>
+<p class="text-xs text-neutral-500 mt-2 leading-relaxed font-sans">
+Холодный графитовый титановый оттенок. Идеальный баланс строгой роскоши.
+</p>
+</div>
+<div class="pt-6 mt-6 hairline-t flex items-center justify-between relative">
+<span class="absolute top-0 left-0 right-0 h-px bg-black cat-rule origin-left"></span>
+<span class="font-mono text-base font-bold text-black">40 000 ₽</span>
+<a class="font-mono text-xs tracking-wider uppercase text-black hover:opacity-60 transition-opacity" href="#order" onclick="selectModel('JETLAG S-03 TITANIUM GREY CABIN (40 000 ₽)')">
+ВЫБРАТЬ →
+</a>
+</div>
+</article>
+
+<article class="cat-item cat-l flex flex-col justify-between group reveal stagger-4">
+<div>
+<div class="cat-media bg-[#EAEAEA] aspect-[3/4] relative mb-6">
+<img alt="jetlag L-01 Silver Check-In" class="w-full h-full object-cover grayscale contrast-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDB0Hyg2IV-MZom46UUNn4ro-dKFOprQvtqEg06dO0thIZLEbYUbSkpaP1sO6N9lJ_qJSFwB2NhsxRXBENYyELNKd_wffxBisxwbAbPHU4bF4OZW2wAPl-ZlTa_peD62Wuxo-t5N5PvfuFeQN7X98vlgPDowQvgXLTtIzXcq81UCf88xD4IgflTobR8AQIcRVc76sboVLd1PSydw9LBNOD_I8Fl4K8Ha8VYiv8JX_I"/>
+<span class="absolute top-4 left-4 font-mono text-[10px] bg-black text-white px-2 py-1 uppercase tracking-wider">БАГАЖ L</span>
+</div>
+<span class="font-mono text-[10px] text-subtext uppercase tracking-widest block">76 × 51 × 28 СМ • 86 Л</span>
+<h3 class="text-xl font-bold font-display uppercase tracking-tight text-black mt-1">JETLAG L-01 MONOLITH</h3>
+<p class="text-xs text-neutral-500 mt-2 leading-relaxed font-sans">
+Увеличенный объем для трансконтинентальных маршрутов. Двойные компрессионные стропы.
+</p>
+</div>
+<div class="pt-6 mt-6 hairline-t flex items-center justify-between relative">
+<span class="absolute top-0 left-0 right-0 h-px bg-black cat-rule origin-left"></span>
+<span class="font-mono text-base font-bold text-black">54 000 ₽</span>
+<a class="font-mono text-xs tracking-wider uppercase text-black hover:opacity-60 transition-opacity" href="#order" onclick="selectModel('JETLAG L-01 SILVER CHECK-IN (54 000 ₽)')">
+ВЫБРАТЬ →
+</a>
+</div>
+</article>
+</div>
+</div>
+</section>
+<!-- END: Section 02 -->
+
+<!-- BEGIN: Section 03 — Size Comparison -->
+<section class="w-full hairline-b py-24 lg:py-32 bg-white" id="sizing">
+<div class="max-w-[1680px] mx-auto px-6 sm:px-10 lg:px-16">
+<div class="flex flex-col md:flex-row md:items-end justify-between pb-8 hairline-b gap-4 reveal">
+<div>
+<span class="font-mono text-[11px] tracking-widest uppercase text-subtext">[ 03 / РАЗМЕРЫ JETLAG ]</span>
+<h2 class="text-4xl sm:text-6xl font-bold font-display tracking-tightest uppercase text-black mt-3">
+СРАВНЕНИЕ СПЕЦИФИКАЦИЙ
+</h2>
+</div>
+<div class="font-mono text-xs text-subtext tracking-wider">
+СООТВЕТСТВУЕТ НОРМАМ РУЧНОЙ КЛАДИ // МИРОВЫЕ АВИАЛИНИИ
+</div>
+</div>
+
+<div class="grid grid-cols-1 md:grid-cols-2 divide-y md:divide-y-0 md:divide-x divide-neutral-200 pt-8">
+<div class="md:pr-12 lg:pr-16 py-8 space-y-8 reveal stagger-1">
+<div class="flex justify-between items-baseline">
+<div>
+<span class="font-mono text-[11px] text-subtext uppercase tracking-widest">РУЧНАЯ КЛАДЬ</span>
+<h3 class="text-3xl lg:text-4xl font-bold font-display uppercase tracking-tight mt-1">РАЗМЕР S — КАБИНА</h3>
+</div>
+<span class="font-mono text-xl font-bold text-black">ОТ 38 000 ₽</span>
+</div>
+<div class="space-y-4 font-mono text-xs">
+<div class="spec-row flex justify-between py-2 hairline-b">
+<span class="text-subtext">ГАБАРИТНЫЕ РАЗМЕРЫ</span>
+<span class="font-medium text-black">55 × 40 × 20 см</span>
+</div>
+<div class="spec-row flex justify-between py-2 hairline-b">
+<span class="text-subtext">ПОЛЕЗНЫЙ ОБЪЕМ</span>
+<span class="font-medium text-black">35 Литров</span>
+</div>
+<div class="spec-row flex justify-between py-2 hairline-b">
+<span class="text-subtext">СУХОЙ ВЕС КОРПУСА</span>
+<span class="font-medium text-black">4.1 кг</span>
+</div>
+<div class="spec-row flex justify-between py-2 hairline-b">
+<span class="text-subtext">МЕЖДУНАРОДНЫЙ СТАНДАРТ</span>
+<span class="font-medium text-black">IATA — ручная кладь</span>
+</div>
+<div class="spec-row flex justify-between py-2 hairline-b">
+<span class="text-subtext">ОТДЕЛЕНИЕ ДЛЯ ТЕХНИКИ</span>
+<span class="font-medium text-black">MacBook Pro 16" / Магнитный замок</span>
+</div>
+</div>
+<p class="text-xs text-subtext leading-relaxed font-sans">
+Разрешен для большинства мировых авиалиний (Emirates, Lufthansa, Аэрофлот, Qatar). Удобен для поездок длительностью 2–5 дней.
+</p>
+</div>
+
+<div class="md:pl-12 lg:pl-16 py-8 space-y-8 reveal stagger-2">
+<div class="flex justify-between items-baseline">
+<div>
+<span class="font-mono text-[11px] text-subtext uppercase tracking-widest">БАГАЖНОЕ ОТДЕЛЕНИЕ</span>
+<h3 class="text-3xl lg:text-4xl font-bold font-display uppercase tracking-tight mt-1">РАЗМЕР L — БАГАЖ</h3>
+</div>
+<span class="font-mono text-xl font-bold text-black">ОТ 54 000 ₽</span>
+</div>
+<div class="space-y-4 font-mono text-xs">
+<div class="spec-row flex justify-between py-2 hairline-b">
+<span class="text-subtext">ГАБАРИТНЫЕ РАЗМЕРЫ</span>
+<span class="font-medium text-black">76 × 51 × 28 см</span>
+</div>
+<div class="spec-row flex justify-between py-2 hairline-b">
+<span class="text-subtext">ПОЛЕЗНЫЙ ОБЪЕМ</span>
+<span class="font-medium text-black">86 Литров</span>
+</div>
+<div class="spec-row flex justify-between py-2 hairline-b">
+<span class="text-subtext">СУХОЙ ВЕС КОРПУСА</span>
+<span class="font-medium text-black">5.8 кг</span>
+</div>
+<div class="spec-row flex justify-between py-2 hairline-b">
+<span class="text-subtext">СТРУКТУРНЫЙ КАРКАС</span>
+<span class="font-medium text-black">Усиленные рёбра jetlag</span>
+</div>
+<div class="spec-row flex justify-between py-2 hairline-b">
+<span class="text-subtext">ВНУТРЕННЕЕ ОСНАЩЕНИЕ</span>
+<span class="font-medium text-black">2 компрессионные панели + водозащита</span>
+</div>
+</div>
+<p class="text-xs text-subtext leading-relaxed font-sans">
+Максимальная вместимость для длительных перелетов и тяжелого багажа. Бескомпромиссная защита хрупких вещей при сдаче в багажный отсек.
+</p>
+</div>
+</div>
+</div>
+</section>
+<!-- END: Section 03 -->
+
+<!-- BEGIN: Section 04 — Footer & Order -->
+<footer class="w-full bg-[#FAFAFA] pt-24 pb-16" id="order">
+<div class="max-w-[1680px] mx-auto px-6 sm:px-10 lg:px-16">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24">
+<div class="lg:col-span-6 space-y-8 reveal">
+<div>
+<a class="inline-block group mb-6" href="#">
+<span class="wordmark-jetlag text-3xl tracking-tightest lowercase text-black">jetlag</span>
+</a>
+<h2 class="text-3xl sm:text-4xl font-bold font-display uppercase tracking-tight text-black">
+ЗАКАЗАТЬ JETLAG
+</h2>
+<p class="text-sm text-subtext mt-3 font-sans max-w-lg leading-relaxed">
+Бесплатная доставка в любую точку России удобным для вас способом.
+</p>
+</div>
+<form class="space-y-4 max-w-md" id="conciergeForm" onsubmit="handleOrderSubmit(event)">
+<div>
+<label class="block font-mono text-[10px] text-subtext tracking-widest uppercase mb-1.5" for="nameInput">ВАШЕ ИМЯ</label>
+<input class="w-full bg-white border border-neutral-300 px-4 py-3.5 text-sm font-sans focus:outline-none focus:border-black transition-colors rounded-none" id="nameInput" placeholder="Алексей" required="" type="text"/>
+</div>
+<div>
+<label class="block font-mono text-[10px] text-subtext tracking-widest uppercase mb-1.5" for="phoneInput">НОМЕР ТЕЛЕФОНА / TELEGRAM</label>
+<input class="w-full bg-white border border-neutral-300 px-4 py-3.5 text-sm font-sans focus:outline-none focus:border-black transition-colors rounded-none" id="phoneInput" placeholder="+7 (999) 000-00-00" required="" type="tel"/>
+</div>
+<div>
+<label class="block font-mono text-[10px] text-subtext tracking-widest uppercase mb-1.5" for="modelInput">ВЫБРАННАЯ МОДЕЛЬ</label>
+<select class="w-full bg-white border border-neutral-300 px-4 py-3.5 text-sm font-mono focus:outline-none focus:border-black transition-colors rounded-none" id="modelInput">
+<option value="JETLAG S-01 SILVER CABIN (38 000 ₽)">JETLAG S-01 SILVER CABIN (38 000 ₽)</option>
+<option value="JETLAG S-02 STEALTH BLACK CABIN (42 000 ₽)">JETLAG S-02 STEALTH BLACK CABIN (42 000 ₽)</option>
+<option value="JETLAG S-03 TITANIUM GREY CABIN (40 000 ₽)">JETLAG S-03 TITANIUM GREY CABIN (40 000 ₽)</option>
+<option value="JETLAG L-01 SILVER CHECK-IN (54 000 ₽)">JETLAG L-01 SILVER CHECK-IN (54 000 ₽)</option>
+</select>
+</div>
+<button class="btn-lux w-full py-4 bg-black text-white font-mono text-xs tracking-widest uppercase flex items-center justify-center gap-2 cursor-pointer" type="submit">
+<span>ОТПРАВИТЬ ЗАПРОС</span>
+<span class="btn-arrow">→</span>
+</button>
+<div class="hidden p-4 bg-black text-white font-mono text-xs leading-relaxed" id="statusMessage">
+[ПРИНЯТО] ВАША ЗАЯВКА ПОЛУЧЕНА. МЫ СВЯЖЕМСЯ В ТЕЧЕНИЕ 15 МИНУТ.
+</div>
+</form>
+</div>
+
+<div class="lg:col-span-6 flex flex-col justify-between space-y-12 reveal stagger-2">
+<div class="space-y-2">
+<span class="font-mono text-[11px] text-subtext tracking-widest uppercase block mb-4">[ ПРЯМЫЕ КАНАЛЫ ]</span>
+<a class="channel-link text-5xl sm:text-6xl lg:text-7xl font-bold uppercase tracking-tightest text-black" href="#">
+TELEGRAM
+</a>
+<a class="channel-link text-5xl sm:text-6xl lg:text-7xl font-bold uppercase tracking-tightest text-black" href="#">
+WHATSAPP
+</a>
+<a class="channel-link text-5xl sm:text-6xl lg:text-7xl font-bold uppercase tracking-tightest text-black" href="#">
+SUPPORT
+</a>
+</div>
+<div class="pt-8 hairline-t space-y-3 font-mono text-xs text-subtext">
+<p class="text-black font-semibold">HELLO@JETLAG-LUGGAGE.COM • +7 (495) 890-21-44</p>
+<div class="flex flex-col sm:flex-row justify-between items-start sm:items-center text-[10px] text-neutral-400 pt-3 gap-2">
+<span>© 2026 JETLAG. ТОЧНОСТЬ И МАСТЕРСТВО.</span>
+<span>100% АВИАЦИОННЫЙ АЛЮМИНИЙ.</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</footer>
+<!-- END: Section 04 -->
+
+<script>
+  function filterCatalog(cat) {
+    const items = document.querySelectorAll('.cat-item');
+    const btnAll = document.getElementById('btn-all');
+    const btnS = document.getElementById('btn-s');
+    const btnL = document.getElementById('btn-l');
+
+    [btnAll, btnS, btnL].forEach(b => {
+      b.className = "px-3 py-1 bg-white border border-neutral-300 text-neutral-600 hover:text-black cursor-pointer";
+    });
+
+    if (cat === 'all') {
+      btnAll.className = "px-3 py-1 bg-black text-white cursor-pointer";
+      items.forEach(it => it.classList.remove('hidden'));
+    } else if (cat === 's') {
+      btnS.className = "px-3 py-1 bg-black text-white cursor-pointer";
+      items.forEach(it => it.classList.toggle('hidden', !it.classList.contains('cat-s')));
+    } else if (cat === 'l') {
+      btnL.className = "px-3 py-1 bg-black text-white cursor-pointer";
+      items.forEach(it => it.classList.toggle('hidden', !it.classList.contains('cat-l')));
+    }
+  }
+
+  function selectModel(modelName) {
+    const input = document.getElementById('modelInput');
+    if (input) input.value = modelName;
+  }
+
+  function handleOrderSubmit(e) {
+    e.preventDefault();
+    const status = document.getElementById('statusMessage');
+    if (status) {
+      status.classList.remove('hidden');
+      document.getElementById('conciergeForm').reset();
+    }
+  }
+
+  (function initMotion() {
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const targets = document.querySelectorAll('.reveal, .reveal-clip, .reveal-scale, .metal-line');
+
+    if (reduce) {
+      targets.forEach(el => el.classList.add('is-in'));
+      return;
+    }
+
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-in');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -6% 0px' });
+
+    targets.forEach(el => io.observe(el));
+
+    // Hero: fire immediately so first paint feels alive
+    requestAnimationFrame(() => {
+      document.querySelectorAll('section.grain .reveal, section.grain .reveal-clip, section.grain .reveal-scale, section.grain .metal-line')
+        .forEach(el => el.classList.add('is-in'));
+    });
+
+    const header = document.querySelector('.site-header');
+    const onScroll = () => {
+      if (!header) return;
+      header.classList.toggle('is-scrolled', window.scrollY > 12);
+    };
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+  })();
+</script>
+</body>
+</html>
