@@ -387,7 +387,6 @@
 <a class="nav-link hover:text-black transition-colors duration-200" href="#order">[ ЗАКАЗ ]</a>
 </nav>
 <div class="flex items-center gap-6">
-<span class="hidden sm:inline-block font-mono text-[10px] tracking-widest uppercase text-subtext">ИЗДАНИЕ 2026</span>
 <a class="btn-lux inline-flex items-center justify-center gap-2 px-5 py-2.5 bg-black text-white font-mono text-[11px] tracking-widest uppercase" href="#order">
 <span>КУПИТЬ</span>
 </a>
@@ -403,7 +402,7 @@
 <div class="reveal flex flex-col sm:flex-row sm:items-center justify-between font-mono text-[11px] tracking-widest text-subtext uppercase pb-6 hairline-b gap-2">
 <span>(00 / ВВЕДЕНИЕ) JETLAG</span>
 <span>БЕРЛИН — ТОКИО — МОСКВА</span>
-<span class="text-black font-medium">[ 100% АВИАЦИОННЫЙ СПЛАВ 6061-T6 ]</span>
+<span class="text-black font-medium">[ 100% АВИАЦИОННЫЙ СПЛАВ ]</span>
 </div>
 
 <!-- Big Headline Hero Statement — same hierarchy as EN: bold + normal grey -->
@@ -439,7 +438,7 @@
 
 <div class="lg:col-span-4 flex flex-col justify-between h-full space-y-10 lg:pl-6">
 <div class="space-y-6 reveal stagger-3">
-<span class="font-mono text-xs text-subtext tracking-widest uppercase block">[ МАНИФЕСТ JETLAG ]</span>
+<span class="font-mono text-xs text-subtext tracking-widest uppercase block">[ НАШ ПРОДУКТ ]</span>
 <p class="manifesto-lead text-xl sm:text-2xl leading-snug text-neutral-900">
 Цельный каркас из авиационного сплава. Ни хрупких молний, ни синтетической оболочки — только монолит, который выдерживает багажную ленту.
 </p>
@@ -552,63 +551,21 @@
 </div>
 <div class="flex items-center gap-2 font-mono text-xs">
 <span class="text-subtext">ФИЛЬТР:</span>
-<button class="px-3 py-1 bg-black text-white cursor-pointer" id="btn-all" onclick="filterCatalog('all')">ВСЕ (4)</button>
-<button class="px-3 py-1 bg-white border border-neutral-300 text-neutral-600 hover:text-black cursor-pointer" id="btn-s" onclick="filterCatalog('s')">КАБИНА S</button>
+<button class="px-3 py-1 bg-black text-white cursor-pointer" id="btn-all" onclick="filterCatalog('all')">ВСЕ (5)</button>
+<button class="px-3 py-1 bg-white border border-neutral-300 text-neutral-600 hover:text-black cursor-pointer" id="btn-s" onclick="filterCatalog('s')">РУЧНАЯ КЛАДЬ</button>
 <button class="px-3 py-1 bg-white border border-neutral-300 text-neutral-600 hover:text-black cursor-pointer" id="btn-l" onclick="filterCatalog('l')">БАГАЖ L</button>
 </div>
 </div>
 
-<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-10 pt-12">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10 pt-12">
 <article class="cat-item cat-s flex flex-col justify-between group reveal stagger-1">
 <div>
-<div class="cat-media bg-[#EEEEEE] aspect-[3/4] relative mb-6">
-<img alt="jetlag S-01 Silver Cabin" class="w-full h-full object-cover grayscale contrast-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDbs4ncutaDTTEWzBoH7HaKDwAs7ZM8hAfB8-E_A5pRqKod9mIWa_VYVitOWbPgZ5r8ZOSSJrgpLZQ6n-1SKxnC6tVgPmdd6uJRs-lLXS7mDLNv8RmVz2u2QVSs4qQKvDqoB3dHJFupNkgVNe_oyWisZRN2MG85ktjfegIU-FARcW3BDbWXzi786WFVsAQkH6D4lM8ewPz_s4egCXf8qQNtszQ7cNK1g7PWojfj6VE"/>
-<span class="absolute top-4 left-4 font-mono text-[10px] bg-black text-white px-2 py-1 uppercase tracking-wider">КАБИНА S</span>
-</div>
-<span class="font-mono text-[10px] text-subtext uppercase tracking-widest block">55 × 40 × 20 СМ • 35 Л</span>
-<h3 class="text-xl font-bold font-display uppercase tracking-tight text-black mt-1">JETLAG S-01 SILVER</h3>
-<p class="text-xs text-neutral-500 mt-2 leading-relaxed font-sans">
-Классический чистый серебристый анодированный алюминий. Отделение под 16" ноутбук.
-</p>
-</div>
-<div class="pt-6 mt-6 hairline-t flex items-center justify-between relative">
-<span class="absolute top-0 left-0 right-0 h-px bg-black cat-rule origin-left"></span>
-<span class="font-mono text-base font-bold text-black">38 000 ₽</span>
-<a class="font-mono text-xs tracking-wider uppercase text-black hover:opacity-60 transition-opacity" href="#order" onclick="selectModel('JETLAG S-01 SILVER CABIN (38 000 ₽)')">
-ВЫБРАТЬ →
-</a>
-</div>
-</article>
-
-<article class="cat-item cat-s flex flex-col justify-between group reveal stagger-2">
-<div>
-<div class="cat-media bg-[#1C1C1E] aspect-[3/4] relative mb-6">
-<img alt="jetlag S-02 Stealth Black" class="w-full h-full object-cover grayscale brightness-75 contrast-125" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCszta17TrlaT4VosOxWkh1OlvyZvS7HMELtkAdjRkuaqnmj5NHnIomCfDAUTkvvLPTyVc96JnHRX11Qn_JcolJ5o4kOXrSx40So58SbBmDQawXjAyQC9ckoThh4KUJKbIFHSjRnQyRKnjkTmnOylwx_1WuIkcS8oW06TTMr8y5KcYIK0nWdd5nKTJdFQ0CIIJS8uOneYbt46cdJREmILnj3ZbU7_WdX_Kp0AQ5700"/>
-<span class="absolute top-4 left-4 font-mono text-[10px] bg-neutral-800 text-white px-2 py-1 uppercase tracking-wider">КАБИНА S</span>
-</div>
-<span class="font-mono text-[10px] text-subtext uppercase tracking-widest block">55 × 40 × 20 СМ • 35 Л</span>
-<h3 class="text-xl font-bold font-display uppercase tracking-tight text-black mt-1">JETLAG S-02 STEALTH</h3>
-<p class="text-xs text-neutral-500 mt-2 leading-relaxed font-sans">
-Глубокое черное матовое анодирование. Полностью черная фурнитура и заклепки.
-</p>
-</div>
-<div class="pt-6 mt-6 hairline-t flex items-center justify-between relative">
-<span class="absolute top-0 left-0 right-0 h-px bg-black cat-rule origin-left"></span>
-<span class="font-mono text-base font-bold text-black">42 000 ₽</span>
-<a class="font-mono text-xs tracking-wider uppercase text-black hover:opacity-60 transition-opacity" href="#order" onclick="selectModel('JETLAG S-02 STEALTH BLACK CABIN (42 000 ₽)')">
-ВЫБРАТЬ →
-</a>
-</div>
-</article>
-
-<article class="cat-item cat-s flex flex-col justify-between group reveal stagger-3">
-<div>
 <div class="cat-media bg-[#E2E2E2] aspect-[3/4] relative mb-6">
-<img alt="jetlag S-03 Titanium Grey" class="w-full h-full object-cover grayscale contrast-125" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCoqQ28NSLF2La_SaqR2J-V9tW5p_CVCL4jN8JPAC3aFBXK5Ih-TvBgVTM5gcBq8OlBURK0qge76bnZ081D8UOJ2aAdhWUh6yvssGUECFiZYzw01XiJjWy9n5lTXnsT_eN1TUNbiMXS54jSMr0gkM1qvb1-yGU62oMIMfPvE-2xNdtTTTQckj89aMOkfsa17FigpynvzenOM58QSQ_hKTpP-VxSRMohvMRWhZeP314"/>
-<span class="absolute top-4 left-4 font-mono text-[10px] bg-black text-white px-2 py-1 uppercase tracking-wider">КАБИНА S</span>
+<img alt="jetlag Base титан — ручная кладь" class="w-full h-full object-cover grayscale contrast-125" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCoqQ28NSLF2La_SaqR2J-V9tW5p_CVCL4jN8JPAC3aFBXK5Ih-TvBgVTM5gcBq8OlBURK0qge76bnZ081D8UOJ2aAdhWUh6yvssGUECFiZYzw01XiJjWy9n5lTXnsT_eN1TUNbiMXS54jSMr0gkM1qvb1-yGU62oMIMfPvE-2xNdtTTTQckj89aMOkfsa17FigpynvzenOM58QSQ_hKTpP-VxSRMohvMRWhZeP314"/>
+<span class="absolute top-4 left-4 font-mono text-[10px] bg-black text-white px-2 py-1 uppercase tracking-wider">РУЧНАЯ КЛАДЬ</span>
 </div>
 <span class="font-mono text-[10px] text-subtext uppercase tracking-widest block">55 × 40 × 20 СМ • 35 Л</span>
-<h3 class="text-xl font-bold font-display uppercase tracking-tight text-black mt-1">JETLAG S-03 TITANIUM</h3>
+<h3 class="text-xl font-bold font-display uppercase tracking-tight text-black mt-1">BASE (ТИТАН)</h3>
 <p class="text-xs text-neutral-500 mt-2 leading-relaxed font-sans">
 Холодный графитовый титановый оттенок. Идеальный баланс строгой роскоши.
 </p>
@@ -616,7 +573,70 @@
 <div class="pt-6 mt-6 hairline-t flex items-center justify-between relative">
 <span class="absolute top-0 left-0 right-0 h-px bg-black cat-rule origin-left"></span>
 <span class="font-mono text-base font-bold text-black">40 000 ₽</span>
-<a class="font-mono text-xs tracking-wider uppercase text-black hover:opacity-60 transition-opacity" href="#order" onclick="selectModel('JETLAG S-03 TITANIUM GREY CABIN (40 000 ₽)')">
+<a class="font-mono text-xs tracking-wider uppercase text-black hover:opacity-60 transition-opacity" href="#order" onclick="selectModel('BASE (ТИТАН) — РУЧНАЯ КЛАДЬ (40 000 ₽)')">
+ВЫБРАТЬ →
+</a>
+</div>
+</article>
+
+<article class="cat-item cat-s flex flex-col justify-between group reveal stagger-2">
+<div>
+<div class="cat-media bg-[#EEEEEE] aspect-[3/4] relative mb-6">
+<img alt="jetlag Standart серебро — ручная кладь" class="w-full h-full object-cover grayscale contrast-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDbs4ncutaDTTEWzBoH7HaKDwAs7ZM8hAfB8-E_A5pRqKod9mIWa_VYVitOWbPgZ5r8ZOSSJrgpLZQ6n-1SKxnC6tVgPmdd6uJRs-lLXS7mDLNv8RmVz2u2QVSs4qQKvDqoB3dHJFupNkgVNe_oyWisZRN2MG85ktjfegIU-FARcW3BDbWXzi786WFVsAQkH6D4lM8ewPz_s4egCXf8qQNtszQ7cNK1g7PWojfj6VE"/>
+<span class="absolute top-4 left-4 font-mono text-[10px] bg-black text-white px-2 py-1 uppercase tracking-wider">РУЧНАЯ КЛАДЬ</span>
+</div>
+<span class="font-mono text-[10px] text-subtext uppercase tracking-widest block">55 × 40 × 20 СМ • 35 Л</span>
+<h3 class="text-xl font-bold font-display uppercase tracking-tight text-black mt-1">STANDART (СЕРЕБРО)</h3>
+<p class="text-xs text-neutral-500 mt-2 leading-relaxed font-sans">
+Классический чистый серебристый анодированный алюминий. Отделение под 16" ноутбук.
+</p>
+</div>
+<div class="pt-6 mt-6 hairline-t flex items-center justify-between relative">
+<span class="absolute top-0 left-0 right-0 h-px bg-black cat-rule origin-left"></span>
+<span class="font-mono text-base font-bold text-black">38 000 ₽</span>
+<a class="font-mono text-xs tracking-wider uppercase text-black hover:opacity-60 transition-opacity" href="#order" onclick="selectModel('STANDART (СЕРЕБРО) — РУЧНАЯ КЛАДЬ (38 000 ₽)')">
+ВЫБРАТЬ →
+</a>
+</div>
+</article>
+
+<article class="cat-item cat-s flex flex-col justify-between group reveal stagger-3">
+<div>
+<div class="cat-media bg-[#E8D5C4] aspect-[3/4] relative mb-6">
+<img alt="jetlag Premium розовое золото — ручная кладь" class="w-full h-full object-cover contrast-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCszta17TrlaT4VosOxWkh1OlvyZvS7HMELtkAdjRkuaqnmj5NHnIomCfDAUTkvvLPTyVc96JnHRX11Qn_JcolJ5o4kOXrSx40So58SbBmDQawXjAyQC9ckoThh4KUJKbIFHSjRnQyRKnjkTmnOylwx_1WuIkcS8oW06TTMr8y5KcYIK0nWdd5nKTJdFQ0CIIJS8uOneYbt46cdJREmILnj3ZbU7_WdX_Kp0AQ5700"/>
+<span class="absolute top-4 left-4 font-mono text-[10px] bg-black text-white px-2 py-1 uppercase tracking-wider">РУЧНАЯ КЛАДЬ</span>
+</div>
+<span class="font-mono text-[10px] text-subtext uppercase tracking-widest block">55 × 40 × 20 СМ • 35 Л</span>
+<h3 class="text-xl font-bold font-display uppercase tracking-tight text-black mt-1">PREMIUM (РОЗОВОЕ ЗОЛОТО)</h3>
+<p class="text-xs text-neutral-500 mt-2 leading-relaxed font-sans">
+Тёплое анодирование в оттенке розового золота. Премиальная фурнитура в тон корпусу.
+</p>
+</div>
+<div class="pt-6 mt-6 hairline-t flex items-center justify-between relative">
+<span class="absolute top-0 left-0 right-0 h-px bg-black cat-rule origin-left"></span>
+<span class="font-mono text-base font-bold text-black">42 000 ₽</span>
+<a class="font-mono text-xs tracking-wider uppercase text-black hover:opacity-60 transition-opacity" href="#order" onclick="selectModel('PREMIUM (РОЗОВОЕ ЗОЛОТО) — РУЧНАЯ КЛАДЬ (42 000 ₽)')">
+ВЫБРАТЬ →
+</a>
+</div>
+</article>
+
+<article class="cat-item cat-l flex flex-col justify-between group reveal stagger-4">
+<div>
+<div class="cat-media bg-[#E2E2E2] aspect-[3/4] relative mb-6">
+<img alt="jetlag Base титан — багаж L" class="w-full h-full object-cover grayscale contrast-125" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCoqQ28NSLF2La_SaqR2J-V9tW5p_CVCL4jN8JPAC3aFBXK5Ih-TvBgVTM5gcBq8OlBURK0qge76bnZ081D8UOJ2aAdhWUh6yvssGUECFiZYzw01XiJjWy9n5lTXnsT_eN1TUNbiMXS54jSMr0gkM1qvb1-yGU62oMIMfPvE-2xNdtTTTQckj89aMOkfsa17FigpynvzenOM58QSQ_hKTpP-VxSRMohvMRWhZeP314"/>
+<span class="absolute top-4 left-4 font-mono text-[10px] bg-black text-white px-2 py-1 uppercase tracking-wider">БАГАЖ L</span>
+</div>
+<span class="font-mono text-[10px] text-subtext uppercase tracking-widest block">76 × 51 × 28 СМ • 86 Л</span>
+<h3 class="text-xl font-bold font-display uppercase tracking-tight text-black mt-1">BASE (ТИТАН)</h3>
+<p class="text-xs text-neutral-500 mt-2 leading-relaxed font-sans">
+Титановый оттенок в увеличенном объёме. Двойные компрессионные стропы.
+</p>
+</div>
+<div class="pt-6 mt-6 hairline-t flex items-center justify-between relative">
+<span class="absolute top-0 left-0 right-0 h-px bg-black cat-rule origin-left"></span>
+<span class="font-mono text-base font-bold text-black">56 000 ₽</span>
+<a class="font-mono text-xs tracking-wider uppercase text-black hover:opacity-60 transition-opacity" href="#order" onclick="selectModel('BASE (ТИТАН) — БАГАЖ L (56 000 ₽)')">
 ВЫБРАТЬ →
 </a>
 </div>
@@ -625,19 +645,19 @@
 <article class="cat-item cat-l flex flex-col justify-between group reveal stagger-4">
 <div>
 <div class="cat-media bg-[#EAEAEA] aspect-[3/4] relative mb-6">
-<img alt="jetlag L-01 Silver Check-In" class="w-full h-full object-cover grayscale contrast-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDB0Hyg2IV-MZom46UUNn4ro-dKFOprQvtqEg06dO0thIZLEbYUbSkpaP1sO6N9lJ_qJSFwB2NhsxRXBENYyELNKd_wffxBisxwbAbPHU4bF4OZW2wAPl-ZlTa_peD62Wuxo-t5N5PvfuFeQN7X98vlgPDowQvgXLTtIzXcq81UCf88xD4IgflTobR8AQIcRVc76sboVLd1PSydw9LBNOD_I8Fl4K8Ha8VYiv8JX_I"/>
+<img alt="jetlag Standart серебро — багаж L" class="w-full h-full object-cover grayscale contrast-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDB0Hyg2IV-MZom46UUNn4ro-dKFOprQvtqEg06dO0thIZLEbYUbSkpaP1sO6N9lJ_qJSFwB2NhsxRXBENYyELNKd_wffxBisxwbAbPHU4bF4OZW2wAPl-ZlTa_peD62Wuxo-t5N5PvfuFeQN7X98vlgPDowQvgXLTtIzXcq81UCf88xD4IgflTobR8AQIcRVc76sboVLd1PSydw9LBNOD_I8Fl4K8Ha8VYiv8JX_I"/>
 <span class="absolute top-4 left-4 font-mono text-[10px] bg-black text-white px-2 py-1 uppercase tracking-wider">БАГАЖ L</span>
 </div>
 <span class="font-mono text-[10px] text-subtext uppercase tracking-widest block">76 × 51 × 28 СМ • 86 Л</span>
-<h3 class="text-xl font-bold font-display uppercase tracking-tight text-black mt-1">JETLAG L-01 MONOLITH</h3>
+<h3 class="text-xl font-bold font-display uppercase tracking-tight text-black mt-1">STANDART (СЕРЕБРО)</h3>
 <p class="text-xs text-neutral-500 mt-2 leading-relaxed font-sans">
-Увеличенный объем для трансконтинентальных маршрутов. Двойные компрессионные стропы.
+Увеличенный объём для трансконтинентальных маршрутов. Классическое серебро.
 </p>
 </div>
 <div class="pt-6 mt-6 hairline-t flex items-center justify-between relative">
 <span class="absolute top-0 left-0 right-0 h-px bg-black cat-rule origin-left"></span>
 <span class="font-mono text-base font-bold text-black">54 000 ₽</span>
-<a class="font-mono text-xs tracking-wider uppercase text-black hover:opacity-60 transition-opacity" href="#order" onclick="selectModel('JETLAG L-01 SILVER CHECK-IN (54 000 ₽)')">
+<a class="font-mono text-xs tracking-wider uppercase text-black hover:opacity-60 transition-opacity" href="#order" onclick="selectModel('STANDART (СЕРЕБРО) — БАГАЖ L (54 000 ₽)')">
 ВЫБРАТЬ →
 </a>
 </div>
@@ -765,10 +785,11 @@
 <div>
 <label class="block font-mono text-[10px] text-subtext tracking-widest uppercase mb-1.5" for="modelInput">ВЫБРАННАЯ МОДЕЛЬ</label>
 <select class="w-full bg-white border border-neutral-300 px-4 py-3.5 text-sm font-mono focus:outline-none focus:border-black transition-colors rounded-none" id="modelInput">
-<option value="JETLAG S-01 SILVER CABIN (38 000 ₽)">JETLAG S-01 SILVER CABIN (38 000 ₽)</option>
-<option value="JETLAG S-02 STEALTH BLACK CABIN (42 000 ₽)">JETLAG S-02 STEALTH BLACK CABIN (42 000 ₽)</option>
-<option value="JETLAG S-03 TITANIUM GREY CABIN (40 000 ₽)">JETLAG S-03 TITANIUM GREY CABIN (40 000 ₽)</option>
-<option value="JETLAG L-01 SILVER CHECK-IN (54 000 ₽)">JETLAG L-01 SILVER CHECK-IN (54 000 ₽)</option>
+<option value="BASE (ТИТАН) — РУЧНАЯ КЛАДЬ (40 000 ₽)">BASE (ТИТАН) — РУЧНАЯ КЛАДЬ (40 000 ₽)</option>
+<option value="STANDART (СЕРЕБРО) — РУЧНАЯ КЛАДЬ (38 000 ₽)">STANDART (СЕРЕБРО) — РУЧНАЯ КЛАДЬ (38 000 ₽)</option>
+<option value="PREMIUM (РОЗОВОЕ ЗОЛОТО) — РУЧНАЯ КЛАДЬ (42 000 ₽)">PREMIUM (РОЗОВОЕ ЗОЛОТО) — РУЧНАЯ КЛАДЬ (42 000 ₽)</option>
+<option value="BASE (ТИТАН) — БАГАЖ L (56 000 ₽)">BASE (ТИТАН) — БАГАЖ L (56 000 ₽)</option>
+<option value="STANDART (СЕРЕБРО) — БАГАЖ L (54 000 ₽)">STANDART (СЕРЕБРО) — БАГАЖ L (54 000 ₽)</option>
 </select>
 </div>
 <button class="btn-lux w-full py-4 bg-black text-white font-mono text-xs tracking-widest uppercase flex items-center justify-center gap-2 cursor-pointer" type="submit">
@@ -783,7 +804,7 @@
 
 <div class="lg:col-span-6 flex flex-col justify-between space-y-12 reveal stagger-2">
 <div class="space-y-2">
-<span class="font-mono text-[11px] text-subtext tracking-widest uppercase block mb-4">[ ПРЯМЫЕ КАНАЛЫ ]</span>
+<span class="font-mono text-[11px] text-subtext tracking-widest uppercase block mb-4">[ СВЯЗАТЬСЯ С НАМИ ]</span>
 <a class="channel-link text-5xl sm:text-6xl lg:text-7xl font-bold uppercase tracking-tightest text-black" href="#">
 TELEGRAM
 </a>
