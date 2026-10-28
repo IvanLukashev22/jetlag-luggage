@@ -566,30 +566,6 @@
     }
   }
 
-  .size-meter {
-    display: flex;
-    align-items: flex-end;
-    gap: 0.75rem;
-    height: 7rem;
-    margin: 1.5rem 0 1rem;
-  }
-
-  .size-meter .block {
-    background: #EFEFEF;
-    border: 1px solid #D4D4D4;
-    width: 100%;
-    max-width: 5.5rem;
-    transition: background-color 0.4s ease, border-color 0.4s ease;
-  }
-
-  .size-card:hover .size-meter .block {
-    background: #0a0a0a;
-    border-color: #0a0a0a;
-  }
-
-  .size-meter .block.s { height: 58%; }
-  .size-meter .block.l { height: 100%; }
-
   /* ——— Channel links ——— */
   .channel-link {
     position: relative;
@@ -663,10 +639,12 @@
 <span class="text-black font-medium">[ 100% АВИАЦИОННЫЙ СПЛАВ ]</span>
 </div>
 
-<!-- Big Headline Hero Statement — same hierarchy as EN: bold + normal grey -->
+<!-- Big Headline Hero Statement — wordmark matches header logo -->
 <div class="hero-headline py-3 md:py-4">
-<h1 class="hero-display uppercase text-black max-w-6xl">
-<span class="reveal-clip stagger-1 block"><span>JETLAG</span></span>
+<h1 class="max-w-6xl">
+<span class="reveal-clip stagger-1 block pb-[0.12em]">
+<span class="wordmark-jetlag block text-[clamp(2.75rem,7vw+1.5vh,6rem)] leading-none lowercase text-black py-[0.08em]">jetlag</span>
+</span>
 <span class="reveal-clip stagger-2 block mt-1">
 <span class="hero-sub">aluminium cases</span>
 </span>
@@ -688,7 +666,7 @@
 <div class="absolute bottom-4 left-4 right-4 sm:bottom-5 sm:left-5 sm:right-5 flex justify-between items-end text-white font-mono text-xs reveal stagger-5">
 <div>
 <p class="font-medium text-sm tracking-wide">JETLAG СЕРИЯ 01</p>
-<p class="text-neutral-400 text-[11px] mt-0.5">55 × 40 × 20 СМ — РУЧНАЯ КЛАДЬ</p>
+<p class="text-neutral-400 text-[11px] mt-0.5">55 × 40 × 20 СМ — КОМПАКТ</p>
 </div>
 <span class="hidden sm:inline text-neutral-400 text-[10px] tracking-widest">[ 4.1 КГ / БЕЗ МОЛНИЙ ]</span>
 </div>
@@ -810,8 +788,8 @@
 <div class="flex items-center gap-2 font-mono text-xs">
 <span class="text-subtext">ФИЛЬТР:</span>
 <button class="px-3 py-1 bg-black text-white cursor-pointer" id="btn-all" onclick="filterCatalog('all')">ВСЕ (5)</button>
-<button class="px-3 py-1 bg-white border border-neutral-300 text-neutral-600 hover:text-black cursor-pointer" id="btn-s" onclick="filterCatalog('s')">РУЧНАЯ КЛАДЬ</button>
-<button class="px-3 py-1 bg-white border border-neutral-300 text-neutral-600 hover:text-black cursor-pointer" id="btn-l" onclick="filterCatalog('l')">БАГАЖ L</button>
+<button class="px-3 py-1 bg-white border border-neutral-300 text-neutral-600 hover:text-black cursor-pointer" id="btn-s" onclick="filterCatalog('s')">КОМПАКТ</button>
+<button class="px-3 py-1 bg-white border border-neutral-300 text-neutral-600 hover:text-black cursor-pointer" id="btn-l" onclick="filterCatalog('l')">БОЛЬШОЙ</button>
 </div>
 </div>
 
@@ -819,8 +797,8 @@
 <article class="cat-item cat-s flex flex-col justify-between group reveal stagger-1">
 <div>
 <div class="cat-media bg-[#E2E2E2] aspect-[3/4] relative mb-6">
-<img alt="jetlag Base титан — ручная кладь" class="w-full h-full object-cover grayscale contrast-125" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCoqQ28NSLF2La_SaqR2J-V9tW5p_CVCL4jN8JPAC3aFBXK5Ih-TvBgVTM5gcBq8OlBURK0qge76bnZ081D8UOJ2aAdhWUh6yvssGUECFiZYzw01XiJjWy9n5lTXnsT_eN1TUNbiMXS54jSMr0gkM1qvb1-yGU62oMIMfPvE-2xNdtTTTQckj89aMOkfsa17FigpynvzenOM58QSQ_hKTpP-VxSRMohvMRWhZeP314"/>
-<span class="absolute top-4 left-4 font-mono text-[10px] bg-black text-white px-2 py-1 uppercase tracking-wider">РУЧНАЯ КЛАДЬ</span>
+<img alt="jetlag Base титан — компакт" class="w-full h-full object-cover grayscale contrast-125" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCoqQ28NSLF2La_SaqR2J-V9tW5p_CVCL4jN8JPAC3aFBXK5Ih-TvBgVTM5gcBq8OlBURK0qge76bnZ081D8UOJ2aAdhWUh6yvssGUECFiZYzw01XiJjWy9n5lTXnsT_eN1TUNbiMXS54jSMr0gkM1qvb1-yGU62oMIMfPvE-2xNdtTTTQckj89aMOkfsa17FigpynvzenOM58QSQ_hKTpP-VxSRMohvMRWhZeP314"/>
+<span class="absolute top-4 left-4 font-mono text-[10px] bg-black text-white px-2 py-1 uppercase tracking-wider">КОМПАКТ</span>
 </div>
 <span class="font-mono text-[10px] text-subtext uppercase tracking-widest block">55 × 40 × 20 СМ • 35 Л</span>
 <h3 class="text-xl font-bold font-display uppercase tracking-tight text-black mt-1">BASE (ТИТАН)</h3>
@@ -831,7 +809,7 @@
 <div class="pt-6 mt-6 hairline-t flex items-center justify-between relative">
 <span class="absolute top-0 left-0 right-0 h-px bg-black cat-rule origin-left"></span>
 <span class="font-mono text-base font-bold text-black">40 000 ₽</span>
-<a class="font-mono text-xs tracking-wider uppercase text-black hover:opacity-60 transition-opacity" href="#order" onclick="selectModel('BASE (ТИТАН) — РУЧНАЯ КЛАДЬ (40 000 ₽)')">
+<a class="font-mono text-xs tracking-wider uppercase text-black hover:opacity-60 transition-opacity" href="#order" onclick="selectModel('BASE (ТИТАН) — КОМПАКТ (40 000 ₽)')">
 ВЫБРАТЬ →
 </a>
 </div>
@@ -840,8 +818,8 @@
 <article class="cat-item cat-s flex flex-col justify-between group reveal stagger-2">
 <div>
 <div class="cat-media bg-[#EEEEEE] aspect-[3/4] relative mb-6">
-<img alt="jetlag Standart серебро — ручная кладь" class="w-full h-full object-cover grayscale contrast-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDbs4ncutaDTTEWzBoH7HaKDwAs7ZM8hAfB8-E_A5pRqKod9mIWa_VYVitOWbPgZ5r8ZOSSJrgpLZQ6n-1SKxnC6tVgPmdd6uJRs-lLXS7mDLNv8RmVz2u2QVSs4qQKvDqoB3dHJFupNkgVNe_oyWisZRN2MG85ktjfegIU-FARcW3BDbWXzi786WFVsAQkH6D4lM8ewPz_s4egCXf8qQNtszQ7cNK1g7PWojfj6VE"/>
-<span class="absolute top-4 left-4 font-mono text-[10px] bg-black text-white px-2 py-1 uppercase tracking-wider">РУЧНАЯ КЛАДЬ</span>
+<img alt="jetlag Standart серебро — компакт" class="w-full h-full object-cover grayscale contrast-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDbs4ncutaDTTEWzBoH7HaKDwAs7ZM8hAfB8-E_A5pRqKod9mIWa_VYVitOWbPgZ5r8ZOSSJrgpLZQ6n-1SKxnC6tVgPmdd6uJRs-lLXS7mDLNv8RmVz2u2QVSs4qQKvDqoB3dHJFupNkgVNe_oyWisZRN2MG85ktjfegIU-FARcW3BDbWXzi786WFVsAQkH6D4lM8ewPz_s4egCXf8qQNtszQ7cNK1g7PWojfj6VE"/>
+<span class="absolute top-4 left-4 font-mono text-[10px] bg-black text-white px-2 py-1 uppercase tracking-wider">КОМПАКТ</span>
 </div>
 <span class="font-mono text-[10px] text-subtext uppercase tracking-widest block">55 × 40 × 20 СМ • 35 Л</span>
 <h3 class="text-xl font-bold font-display uppercase tracking-tight text-black mt-1">STANDART (СЕРЕБРО)</h3>
@@ -852,7 +830,7 @@
 <div class="pt-6 mt-6 hairline-t flex items-center justify-between relative">
 <span class="absolute top-0 left-0 right-0 h-px bg-black cat-rule origin-left"></span>
 <span class="font-mono text-base font-bold text-black">38 000 ₽</span>
-<a class="font-mono text-xs tracking-wider uppercase text-black hover:opacity-60 transition-opacity" href="#order" onclick="selectModel('STANDART (СЕРЕБРО) — РУЧНАЯ КЛАДЬ (38 000 ₽)')">
+<a class="font-mono text-xs tracking-wider uppercase text-black hover:opacity-60 transition-opacity" href="#order" onclick="selectModel('STANDART (СЕРЕБРО) — КОМПАКТ (38 000 ₽)')">
 ВЫБРАТЬ →
 </a>
 </div>
@@ -861,8 +839,8 @@
 <article class="cat-item cat-s flex flex-col justify-between group reveal stagger-3">
 <div>
 <div class="cat-media bg-[#E8D5C4] aspect-[3/4] relative mb-6">
-<img alt="jetlag Premium розовое золото — ручная кладь" class="w-full h-full object-cover contrast-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCszta17TrlaT4VosOxWkh1OlvyZvS7HMELtkAdjRkuaqnmj5NHnIomCfDAUTkvvLPTyVc96JnHRX11Qn_JcolJ5o4kOXrSx40So58SbBmDQawXjAyQC9ckoThh4KUJKbIFHSjRnQyRKnjkTmnOylwx_1WuIkcS8oW06TTMr8y5KcYIK0nWdd5nKTJdFQ0CIIJS8uOneYbt46cdJREmILnj3ZbU7_WdX_Kp0AQ5700"/>
-<span class="absolute top-4 left-4 font-mono text-[10px] bg-black text-white px-2 py-1 uppercase tracking-wider">РУЧНАЯ КЛАДЬ</span>
+<img alt="jetlag Premium розовое золото — компакт" class="w-full h-full object-cover contrast-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCszta17TrlaT4VosOxWkh1OlvyZvS7HMELtkAdjRkuaqnmj5NHnIomCfDAUTkvvLPTyVc96JnHRX11Qn_JcolJ5o4kOXrSx40So58SbBmDQawXjAyQC9ckoThh4KUJKbIFHSjRnQyRKnjkTmnOylwx_1WuIkcS8oW06TTMr8y5KcYIK0nWdd5nKTJdFQ0CIIJS8uOneYbt46cdJREmILnj3ZbU7_WdX_Kp0AQ5700"/>
+<span class="absolute top-4 left-4 font-mono text-[10px] bg-black text-white px-2 py-1 uppercase tracking-wider">КОМПАКТ</span>
 </div>
 <span class="font-mono text-[10px] text-subtext uppercase tracking-widest block">55 × 40 × 20 СМ • 35 Л</span>
 <h3 class="text-xl font-bold font-display uppercase tracking-tight text-black mt-1">PREMIUM (РОЗОВОЕ ЗОЛОТО)</h3>
@@ -873,7 +851,7 @@
 <div class="pt-6 mt-6 hairline-t flex items-center justify-between relative">
 <span class="absolute top-0 left-0 right-0 h-px bg-black cat-rule origin-left"></span>
 <span class="font-mono text-base font-bold text-black">42 000 ₽</span>
-<a class="font-mono text-xs tracking-wider uppercase text-black hover:opacity-60 transition-opacity" href="#order" onclick="selectModel('PREMIUM (РОЗОВОЕ ЗОЛОТО) — РУЧНАЯ КЛАДЬ (42 000 ₽)')">
+<a class="font-mono text-xs tracking-wider uppercase text-black hover:opacity-60 transition-opacity" href="#order" onclick="selectModel('PREMIUM (РОЗОВОЕ ЗОЛОТО) — КОМПАКТ (42 000 ₽)')">
 ВЫБРАТЬ →
 </a>
 </div>
@@ -882,8 +860,8 @@
 <article class="cat-item cat-l flex flex-col justify-between group reveal stagger-4">
 <div>
 <div class="cat-media bg-[#E2E2E2] aspect-[3/4] relative mb-6">
-<img alt="jetlag Base титан — багаж L" class="w-full h-full object-cover grayscale contrast-125" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCoqQ28NSLF2La_SaqR2J-V9tW5p_CVCL4jN8JPAC3aFBXK5Ih-TvBgVTM5gcBq8OlBURK0qge76bnZ081D8UOJ2aAdhWUh6yvssGUECFiZYzw01XiJjWy9n5lTXnsT_eN1TUNbiMXS54jSMr0gkM1qvb1-yGU62oMIMfPvE-2xNdtTTTQckj89aMOkfsa17FigpynvzenOM58QSQ_hKTpP-VxSRMohvMRWhZeP314"/>
-<span class="absolute top-4 left-4 font-mono text-[10px] bg-black text-white px-2 py-1 uppercase tracking-wider">БАГАЖ L</span>
+<img alt="jetlag Base титан — большой" class="w-full h-full object-cover grayscale contrast-125" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCoqQ28NSLF2La_SaqR2J-V9tW5p_CVCL4jN8JPAC3aFBXK5Ih-TvBgVTM5gcBq8OlBURK0qge76bnZ081D8UOJ2aAdhWUh6yvssGUECFiZYzw01XiJjWy9n5lTXnsT_eN1TUNbiMXS54jSMr0gkM1qvb1-yGU62oMIMfPvE-2xNdtTTTQckj89aMOkfsa17FigpynvzenOM58QSQ_hKTpP-VxSRMohvMRWhZeP314"/>
+<span class="absolute top-4 left-4 font-mono text-[10px] bg-black text-white px-2 py-1 uppercase tracking-wider">БОЛЬШОЙ</span>
 </div>
 <span class="font-mono text-[10px] text-subtext uppercase tracking-widest block">76 × 51 × 28 СМ • 86 Л</span>
 <h3 class="text-xl font-bold font-display uppercase tracking-tight text-black mt-1">BASE (ТИТАН)</h3>
@@ -894,7 +872,7 @@
 <div class="pt-6 mt-6 hairline-t flex items-center justify-between relative">
 <span class="absolute top-0 left-0 right-0 h-px bg-black cat-rule origin-left"></span>
 <span class="font-mono text-base font-bold text-black">56 000 ₽</span>
-<a class="font-mono text-xs tracking-wider uppercase text-black hover:opacity-60 transition-opacity" href="#order" onclick="selectModel('BASE (ТИТАН) — БАГАЖ L (56 000 ₽)')">
+<a class="font-mono text-xs tracking-wider uppercase text-black hover:opacity-60 transition-opacity" href="#order" onclick="selectModel('BASE (ТИТАН) — БОЛЬШОЙ (56 000 ₽)')">
 ВЫБРАТЬ →
 </a>
 </div>
@@ -903,19 +881,19 @@
 <article class="cat-item cat-l flex flex-col justify-between group reveal stagger-4">
 <div>
 <div class="cat-media bg-[#EAEAEA] aspect-[3/4] relative mb-6">
-<img alt="jetlag Standart серебро — багаж L" class="w-full h-full object-cover grayscale contrast-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDB0Hyg2IV-MZom46UUNn4ro-dKFOprQvtqEg06dO0thIZLEbYUbSkpaP1sO6N9lJ_qJSFwB2NhsxRXBENYyELNKd_wffxBisxwbAbPHU4bF4OZW2wAPl-ZlTa_peD62Wuxo-t5N5PvfuFeQN7X98vlgPDowQvgXLTtIzXcq81UCf88xD4IgflTobR8AQIcRVc76sboVLd1PSydw9LBNOD_I8Fl4K8Ha8VYiv8JX_I"/>
-<span class="absolute top-4 left-4 font-mono text-[10px] bg-black text-white px-2 py-1 uppercase tracking-wider">БАГАЖ L</span>
+<img alt="jetlag Standart серебро — большой" class="w-full h-full object-cover grayscale contrast-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDB0Hyg2IV-MZom46UUNn4ro-dKFOprQvtqEg06dO0thIZLEbYUbSkpaP1sO6N9lJ_qJSFwB2NhsxRXBENYyELNKd_wffxBisxwbAbPHU4bF4OZW2wAPl-ZlTa_peD62Wuxo-t5N5PvfuFeQN7X98vlgPDowQvgXLTtIzXcq81UCf88xD4IgflTobR8AQIcRVc76sboVLd1PSydw9LBNOD_I8Fl4K8Ha8VYiv8JX_I"/>
+<span class="absolute top-4 left-4 font-mono text-[10px] bg-black text-white px-2 py-1 uppercase tracking-wider">БОЛЬШОЙ</span>
 </div>
 <span class="font-mono text-[10px] text-subtext uppercase tracking-widest block">76 × 51 × 28 СМ • 86 Л</span>
 <h3 class="text-xl font-bold font-display uppercase tracking-tight text-black mt-1">STANDART (СЕРЕБРО)</h3>
 <p class="text-xs text-neutral-500 mt-2 leading-relaxed font-sans">
-Увеличенный объём для трансконтинентальных маршрутов. Классическое серебро.
+Увеличенный объём для длинных маршрутов. Классическое серебро.
 </p>
 </div>
 <div class="pt-6 mt-6 hairline-t flex items-center justify-between relative">
 <span class="absolute top-0 left-0 right-0 h-px bg-black cat-rule origin-left"></span>
 <span class="font-mono text-base font-bold text-black">54 000 ₽</span>
-<a class="font-mono text-xs tracking-wider uppercase text-black hover:opacity-60 transition-opacity" href="#order" onclick="selectModel('STANDART (СЕРЕБРО) — БАГАЖ L (54 000 ₽)')">
+<a class="font-mono text-xs tracking-wider uppercase text-black hover:opacity-60 transition-opacity" href="#order" onclick="selectModel('STANDART (СЕРЕБРО) — БОЛЬШОЙ (54 000 ₽)')">
 ВЫБРАТЬ →
 </a>
 </div>
@@ -925,226 +903,89 @@
 </section>
 <!-- END: Section 02 -->
 
-<!-- BEGIN: Section 03 — Model Comparison -->
+<!-- BEGIN: Section 03 — Simple comparison -->
 <section class="w-full hairline-b py-24 lg:py-32 bg-white" id="sizing">
 <div class="max-w-[1680px] mx-auto px-6 sm:px-10 lg:px-16">
-<div class="flex flex-col xl:flex-row xl:items-end justify-between pb-8 hairline-b gap-6 reveal">
-<div class="max-w-3xl">
-<span class="font-mono text-[11px] tracking-widest uppercase text-subtext">[ 03 / СРАВНЕНИЕ JETLAG ]</span>
+<div class="reveal pb-8 hairline-b">
+<span class="font-mono text-[11px] tracking-widest uppercase text-subtext">[ 03 / СРАВНЕНИЕ ]</span>
 <h2 class="text-4xl sm:text-5xl lg:text-6xl font-bold font-display tracking-tightest uppercase text-black mt-3">
-СРАВНЕНИЕ МОДЕЛЕЙ
+ДВА РАЗМЕРА
 </h2>
 <p class="mt-4 text-sm sm:text-base text-subtext font-sans max-w-xl leading-relaxed">
-Три оттенка анодирования в ручной клади. Два — в багаже L. Одна конструкция из авиационного алюминия.
-</p>
-</div>
-<div class="flex flex-col sm:flex-row sm:items-center gap-4">
-<span class="font-mono text-[10px] tracking-widest uppercase text-subtext">РАЗМЕР</span>
-<div class="cmp-toggle" role="tablist" aria-label="Размер для сравнения">
-<button type="button" class="is-active" id="cmp-btn-s" role="tab" aria-selected="true" onclick="setCompareSize('s')">Ручная кладь S</button>
-<button type="button" id="cmp-btn-l" role="tab" aria-selected="false" onclick="setCompareSize('l')">Багаж L</button>
-</div>
-</div>
-</div>
-
-<div class="pt-10 reveal stagger-1">
-<div class="flex flex-wrap items-center justify-between gap-3 mb-6">
-<p class="font-mono text-[11px] tracking-widest uppercase text-subtext" id="cmp-size-label">
-[ S / 55 × 40 × 20 СМ · 35 Л · 4.1 КГ ]
-</p>
-<p class="font-mono text-[10px] tracking-widest uppercase text-neutral-400" id="cmp-size-note">
-IATA · Emirates · Lufthansa · Аэрофлот · Qatar
+Одинаковый алюминий и конструкция. Отличается только объём.
 </p>
 </div>
 
-<div class="cmp-scroll hairline-t">
-<table class="cmp-table">
-<thead>
-<tr>
-<th scope="col">
-<span class="font-mono text-[10px] tracking-widest uppercase text-subtext">Параметр</span>
-</th>
-<th scope="col">
-<div class="flex items-start gap-3">
-<span class="cmp-swatch titanium shrink-0 mt-0.5" aria-hidden="true"></span>
-<div>
-<p class="font-display text-xl sm:text-2xl font-bold uppercase tracking-tight text-black">Base</p>
-<p class="font-mono text-[10px] tracking-widest uppercase text-subtext mt-1">Титан</p>
-</div>
-</div>
-</th>
-<th scope="col">
-<div class="flex items-start gap-3">
-<span class="cmp-swatch silver shrink-0 mt-0.5" aria-hidden="true"></span>
-<div>
-<p class="font-display text-xl sm:text-2xl font-bold uppercase tracking-tight text-black">Standart</p>
-<p class="font-mono text-[10px] tracking-widest uppercase text-subtext mt-1">Серебро</p>
-</div>
-</div>
-</th>
-<th scope="col" id="cmp-col-premium-head">
-<div class="flex items-start gap-3">
-<span class="cmp-swatch rose shrink-0 mt-0.5" aria-hidden="true"></span>
-<div>
-<p class="font-display text-xl sm:text-2xl font-bold uppercase tracking-tight text-black">Premium</p>
-<p class="font-mono text-[10px] tracking-widest uppercase text-subtext mt-1">Розовое золото</p>
-</div>
-</div>
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<th scope="row">Цена</th>
-<td><span class="cmp-price" data-cmp="price-base">40 000 ₽</span></td>
-<td><span class="cmp-price" data-cmp="price-standart">38 000 ₽</span></td>
-<td data-cmp-premium><span class="cmp-price" data-cmp="price-premium">42 000 ₽</span></td>
-</tr>
-<tr>
-<th scope="row">Оттенок</th>
-<td>Графитовый титан</td>
-<td>Чистый серебристый</td>
-<td data-cmp-premium>Тёплое розовое золото</td>
-</tr>
-<tr>
-<th scope="row">Габариты</th>
-<td data-cmp="dims">55 × 40 × 20 см</td>
-<td data-cmp="dims">55 × 40 × 20 см</td>
-<td data-cmp-premium data-cmp="dims">55 × 40 × 20 см</td>
-</tr>
-<tr>
-<th scope="row">Объём</th>
-<td>
-<span data-cmp="volume">35 л</span>
-<div class="cmp-bar" aria-hidden="true"><span data-cmp="vol-bar" style="width:41%"></span></div>
-</td>
-<td>
-<span data-cmp="volume">35 л</span>
-<div class="cmp-bar" aria-hidden="true"><span data-cmp="vol-bar" style="width:41%"></span></div>
-</td>
-<td data-cmp-premium>
-<span data-cmp="volume">35 л</span>
-<div class="cmp-bar" aria-hidden="true"><span data-cmp="vol-bar" style="width:41%"></span></div>
-</td>
-</tr>
-<tr>
-<th scope="row">Вес</th>
-<td data-cmp="weight">4.1 кг</td>
-<td data-cmp="weight">4.1 кг</td>
-<td data-cmp-premium data-cmp="weight">4.1 кг</td>
-</tr>
-<tr>
-<th scope="row">Фурнитура</th>
-<td>Чёрный мат / титан</td>
-<td>Серебро в тон корпусу</td>
-<td data-cmp-premium>Фурнитура в тон розовому золоту</td>
-</tr>
-<tr>
-<th scope="row">Особенность</th>
-<td data-cmp="feature-base">Строгий баланс / универсальный</td>
-<td data-cmp="feature-standart">Карман под 16" ноутбук</td>
-<td data-cmp-premium data-cmp="feature-premium">Премиальное анодирование</td>
-</tr>
-<tr>
-<th scope="row">Доступность</th>
-<td data-cmp="avail-base">Ручная кладь + багаж L</td>
-<td data-cmp="avail-standart">Ручная кладь + багаж L</td>
-<td data-cmp-premium data-cmp="avail-premium">Только ручная кладь</td>
-</tr>
-<tr class="cmp-cta">
-<th scope="row" class="!pt-6 !pb-2"><span class="sr-only">Заказ</span></th>
-<td class="!pt-6 !pb-2">
-<a class="btn-lux inline-flex w-full sm:w-auto items-center justify-between gap-6 px-5 py-3.5 bg-black text-white font-mono text-[11px] tracking-widest uppercase" href="#order" data-cmp-order="base" data-model="BASE (ТИТАН) — РУЧНАЯ КЛАДЬ (40 000 ₽)" onclick="selectModel(this.dataset.model)">
-<span>Выбрать Base</span><span class="btn-arrow">→</span>
-</a>
-</td>
-<td class="!pt-6 !pb-2">
-<a class="btn-lux inline-flex w-full sm:w-auto items-center justify-between gap-6 px-5 py-3.5 bg-black text-white font-mono text-[11px] tracking-widest uppercase" href="#order" data-cmp-order="standart" data-model="STANDART (СЕРЕБРО) — РУЧНАЯ КЛАДЬ (38 000 ₽)" onclick="selectModel(this.dataset.model)">
-<span>Выбрать Standart</span><span class="btn-arrow">→</span>
-</a>
-</td>
-<td class="!pt-6 !pb-2" data-cmp-premium>
-<a class="btn-lux inline-flex w-full sm:w-auto items-center justify-between gap-6 px-5 py-3.5 bg-black text-white font-mono text-[11px] tracking-widest uppercase" href="#order" data-cmp-order="premium" data-model="PREMIUM (РОЗОВОЕ ЗОЛОТО) — РУЧНАЯ КЛАДЬ (42 000 ₽)" onclick="selectModel(this.dataset.model)">
-<span>Выбрать Premium</span><span class="btn-arrow">→</span>
-</a>
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-
-<div id="cmp-l-empty" class="hidden mt-4 p-5 border border-neutral-200 bg-[#FAFAFA]">
-<p class="font-mono text-[11px] tracking-widest uppercase text-subtext">
-[ Premium ] Розовое золото в размере L пока не выпускается — доступно только в ручной клади.
-</p>
-</div>
-</div>
-
-<div class="mt-16 lg:mt-20 reveal stagger-2">
-<div class="flex flex-col md:flex-row md:items-end justify-between gap-3 pb-6">
-<div>
-<span class="font-mono text-[11px] tracking-widest uppercase text-subtext">[ РАЗМЕРНАЯ ЛИНЕЙКА ]</span>
-<h3 class="text-2xl sm:text-3xl font-bold font-display uppercase tracking-tight text-black mt-2">S и L — что брать</h3>
-</div>
-<p class="font-mono text-[10px] tracking-widest uppercase text-neutral-400 max-w-sm md:text-right">
-Одинаковый сплав и замки TSA · отличается объём и сценарий поездки
-</p>
-</div>
-
-<div class="size-board">
+<div class="size-board reveal stagger-1">
 <article class="size-card">
 <div class="flex items-baseline justify-between gap-4">
 <div>
-<span class="font-mono text-[10px] tracking-widest uppercase text-subtext">Ручная кладь</span>
-<p class="font-display text-3xl font-bold uppercase tracking-tight mt-1">Размер S</p>
+<span class="font-mono text-[10px] tracking-widest uppercase text-subtext">Меньше</span>
+<p class="font-display text-3xl font-bold uppercase tracking-tight mt-1">Компакт</p>
 </div>
 <span class="cmp-price">от 38 000 ₽</span>
 </div>
-<div class="size-meter" aria-hidden="true">
-<div class="block s"></div>
-<div class="block s" style="max-width:3.5rem;height:42%"></div>
-</div>
-<ul class="space-y-0 font-mono text-xs">
+<ul class="space-y-0 font-mono text-xs mt-6">
 <li class="spec-row flex justify-between py-2.5 hairline-b"><span class="text-subtext">Габариты</span><span>55 × 40 × 20 см</span></li>
 <li class="spec-row flex justify-between py-2.5 hairline-b"><span class="text-subtext">Объём</span><span>35 л</span></li>
 <li class="spec-row flex justify-between py-2.5 hairline-b"><span class="text-subtext">Вес</span><span>4.1 кг</span></li>
-<li class="spec-row flex justify-between py-2.5 hairline-b"><span class="text-subtext">Модели</span><span>Base · Standart · Premium</span></li>
-<li class="spec-row flex justify-between py-2.5 hairline-b"><span class="text-subtext">Сценарий</span><span>2–5 дней / cabin</span></li>
+<li class="spec-row flex justify-between py-2.5 hairline-b"><span class="text-subtext">Оттенки</span><span>Base · Standart · Premium</span></li>
 </ul>
-<p class="mt-5 text-sm text-subtext font-sans leading-relaxed">
-Проходит как ручная кладь у большинства авиакомпаний. Три оттенка на выбор.
-</p>
-<button type="button" class="mt-6 font-mono text-[11px] tracking-widest uppercase text-black underline underline-offset-4 hover:opacity-60" onclick="setCompareSize('s'); document.getElementById('sizing').scrollIntoView({behavior:'smooth', block:'start'})">
-Сравнить модели S →
-</button>
 </article>
 
 <article class="size-card">
 <div class="flex items-baseline justify-between gap-4">
 <div>
-<span class="font-mono text-[10px] tracking-widest uppercase text-subtext">Багажное отделение</span>
-<p class="font-display text-3xl font-bold uppercase tracking-tight mt-1">Размер L</p>
+<span class="font-mono text-[10px] tracking-widest uppercase text-subtext">Больше</span>
+<p class="font-display text-3xl font-bold uppercase tracking-tight mt-1">Большой</p>
 </div>
 <span class="cmp-price">от 54 000 ₽</span>
 </div>
-<div class="size-meter" aria-hidden="true">
-<div class="block l"></div>
-<div class="block l" style="max-width:4.25rem;height:78%"></div>
-</div>
-<ul class="space-y-0 font-mono text-xs">
+<ul class="space-y-0 font-mono text-xs mt-6">
 <li class="spec-row flex justify-between py-2.5 hairline-b"><span class="text-subtext">Габариты</span><span>76 × 51 × 28 см</span></li>
 <li class="spec-row flex justify-between py-2.5 hairline-b"><span class="text-subtext">Объём</span><span>86 л</span></li>
 <li class="spec-row flex justify-between py-2.5 hairline-b"><span class="text-subtext">Вес</span><span>5.8 кг</span></li>
-<li class="spec-row flex justify-between py-2.5 hairline-b"><span class="text-subtext">Модели</span><span>Base · Standart</span></li>
-<li class="spec-row flex justify-between py-2.5 hairline-b"><span class="text-subtext">Сценарий</span><span>Длинные маршруты / checked</span></li>
+<li class="spec-row flex justify-between py-2.5 hairline-b"><span class="text-subtext">Оттенки</span><span>Base · Standart</span></li>
 </ul>
-<p class="mt-5 text-sm text-subtext font-sans leading-relaxed">
-Усиленный каркас и компрессионные панели для сдачи в багаж. Premium в L нет.
-</p>
-<button type="button" class="mt-6 font-mono text-[11px] tracking-widest uppercase text-black underline underline-offset-4 hover:opacity-60" onclick="setCompareSize('l'); document.getElementById('sizing').scrollIntoView({behavior:'smooth', block:'start'})">
-Сравнить модели L →
-</button>
 </article>
+</div>
+
+<div class="mt-16 lg:mt-20 reveal stagger-2">
+<span class="font-mono text-[11px] tracking-widest uppercase text-subtext">[ ОТТЕНКИ ]</span>
+<div class="mt-6 grid grid-cols-1 md:grid-cols-3 gap-0 hairline-t">
+<div class="py-8 md:pr-8 md:border-r md:border-borderline">
+<div class="flex items-center gap-3 mb-4">
+<span class="cmp-swatch titanium shrink-0" aria-hidden="true"></span>
+<div>
+<p class="font-display text-xl font-bold uppercase tracking-tight text-black">Base</p>
+<p class="font-mono text-[10px] tracking-widest uppercase text-subtext mt-0.5">Титан</p>
+</div>
+</div>
+<p class="font-mono text-sm text-black">от 40 000 ₽</p>
+<p class="text-sm text-subtext mt-2 font-sans leading-relaxed">Графитовый холодный оттенок. Оба размера.</p>
+</div>
+<div class="py-8 md:px-8 md:border-r md:border-borderline">
+<div class="flex items-center gap-3 mb-4">
+<span class="cmp-swatch silver shrink-0" aria-hidden="true"></span>
+<div>
+<p class="font-display text-xl font-bold uppercase tracking-tight text-black">Standart</p>
+<p class="font-mono text-[10px] tracking-widest uppercase text-subtext mt-0.5">Серебро</p>
+</div>
+</div>
+<p class="font-mono text-sm text-black">от 38 000 ₽</p>
+<p class="text-sm text-subtext mt-2 font-sans leading-relaxed">Классическое серебро. Оба размера.</p>
+</div>
+<div class="py-8 md:pl-8">
+<div class="flex items-center gap-3 mb-4">
+<span class="cmp-swatch rose shrink-0" aria-hidden="true"></span>
+<div>
+<p class="font-display text-xl font-bold uppercase tracking-tight text-black">Premium</p>
+<p class="font-mono text-[10px] tracking-widest uppercase text-subtext mt-0.5">Розовое золото</p>
+</div>
+</div>
+<p class="font-mono text-sm text-black">42 000 ₽</p>
+<p class="text-sm text-subtext mt-2 font-sans leading-relaxed">Тёплое анодирование. Только компакт.</p>
+</div>
 </div>
 </div>
 </div>
@@ -1179,11 +1020,11 @@ IATA · Emirates · Lufthansa · Аэрофлот · Qatar
 <div>
 <label class="block font-mono text-[10px] text-subtext tracking-widest uppercase mb-1.5" for="modelInput">ВЫБРАННАЯ МОДЕЛЬ</label>
 <select class="w-full bg-white border border-neutral-300 px-4 py-3.5 text-sm font-mono focus:outline-none focus:border-black transition-colors rounded-none" id="modelInput">
-<option value="BASE (ТИТАН) — РУЧНАЯ КЛАДЬ (40 000 ₽)">BASE (ТИТАН) — РУЧНАЯ КЛАДЬ (40 000 ₽)</option>
-<option value="STANDART (СЕРЕБРО) — РУЧНАЯ КЛАДЬ (38 000 ₽)">STANDART (СЕРЕБРО) — РУЧНАЯ КЛАДЬ (38 000 ₽)</option>
-<option value="PREMIUM (РОЗОВОЕ ЗОЛОТО) — РУЧНАЯ КЛАДЬ (42 000 ₽)">PREMIUM (РОЗОВОЕ ЗОЛОТО) — РУЧНАЯ КЛАДЬ (42 000 ₽)</option>
-<option value="BASE (ТИТАН) — БАГАЖ L (56 000 ₽)">BASE (ТИТАН) — БАГАЖ L (56 000 ₽)</option>
-<option value="STANDART (СЕРЕБРО) — БАГАЖ L (54 000 ₽)">STANDART (СЕРЕБРО) — БАГАЖ L (54 000 ₽)</option>
+<option value="BASE (ТИТАН) — КОМПАКТ (40 000 ₽)">BASE (ТИТАН) — КОМПАКТ (40 000 ₽)</option>
+<option value="STANDART (СЕРЕБРО) — КОМПАКТ (38 000 ₽)">STANDART (СЕРЕБРО) — КОМПАКТ (38 000 ₽)</option>
+<option value="PREMIUM (РОЗОВОЕ ЗОЛОТО) — КОМПАКТ (42 000 ₽)">PREMIUM (РОЗОВОЕ ЗОЛОТО) — КОМПАКТ (42 000 ₽)</option>
+<option value="BASE (ТИТАН) — БОЛЬШОЙ (56 000 ₽)">BASE (ТИТАН) — БОЛЬШОЙ (56 000 ₽)</option>
+<option value="STANDART (СЕРЕБРО) — БОЛЬШОЙ (54 000 ₽)">STANDART (СЕРЕБРО) — БОЛЬШОЙ (54 000 ₽)</option>
 </select>
 </div>
 <button class="btn-lux w-full py-4 bg-black text-white font-mono text-xs tracking-widest uppercase flex items-center justify-center gap-2 cursor-pointer" type="submit">
@@ -1245,139 +1086,6 @@ SUPPORT
     }
   }
 
-  const COMPARE = {
-    s: {
-      label: '[ S / 55 × 40 × 20 СМ · 35 Л · 4.1 КГ ]',
-      note: 'IATA · Emirates · Lufthansa · Аэрофлот · Qatar',
-      dims: '55 × 40 × 20 см',
-      volume: '35 л',
-      volBar: '41%',
-      weight: '4.1 кг',
-      prices: {
-        base: '40 000 ₽',
-        standart: '38 000 ₽',
-        premium: '42 000 ₽'
-      },
-      features: {
-        base: 'Строгий баланс / универсальный',
-        standart: 'Карман под 16" ноутбук',
-        premium: 'Премиальное анодирование'
-      },
-      availability: {
-        base: 'Ручная кладь + багаж L',
-        standart: 'Ручная кладь + багаж L',
-        premium: 'Только ручная кладь'
-      },
-      orders: {
-        base: 'BASE (ТИТАН) — РУЧНАЯ КЛАДЬ (40 000 ₽)',
-        standart: 'STANDART (СЕРЕБРО) — РУЧНАЯ КЛАДЬ (38 000 ₽)',
-        premium: 'PREMIUM (РОЗОВОЕ ЗОЛОТО) — РУЧНАЯ КЛАДЬ (42 000 ₽)'
-      },
-      premium: true
-    },
-    l: {
-      label: '[ L / 76 × 51 × 28 СМ · 86 Л · 5.8 КГ ]',
-      note: 'Checked baggage · усиленные рёбра · компрессия',
-      dims: '76 × 51 × 28 см',
-      volume: '86 л',
-      volBar: '100%',
-      weight: '5.8 кг',
-      prices: {
-        base: '56 000 ₽',
-        standart: '54 000 ₽',
-        premium: '—'
-      },
-      features: {
-        base: 'Двойные компрессионные стропы',
-        standart: 'Максимальный объём / серебро',
-        premium: 'Не выпускается в размере L'
-      },
-      availability: {
-        base: 'Доступен в багаже L',
-        standart: 'Доступен в багаже L',
-        premium: 'Нет в размере L'
-      },
-      orders: {
-        base: 'BASE (ТИТАН) — БАГАЖ L (56 000 ₽)',
-        standart: 'STANDART (СЕРЕБРО) — БАГАЖ L (54 000 ₽)',
-        premium: ''
-      },
-      premium: false
-    }
-  };
-
-  function setCompareSize(size) {
-    const data = COMPARE[size] || COMPARE.s;
-    const btnS = document.getElementById('cmp-btn-s');
-    const btnL = document.getElementById('cmp-btn-l');
-    const empty = document.getElementById('cmp-l-empty');
-    const label = document.getElementById('cmp-size-label');
-    const note = document.getElementById('cmp-size-note');
-
-    if (btnS && btnL) {
-      btnS.classList.toggle('is-active', size === 's');
-      btnL.classList.toggle('is-active', size === 'l');
-      btnS.setAttribute('aria-selected', size === 's' ? 'true' : 'false');
-      btnL.setAttribute('aria-selected', size === 'l' ? 'true' : 'false');
-    }
-
-    if (label) label.textContent = data.label;
-    if (note) note.textContent = data.note;
-    if (empty) empty.classList.toggle('hidden', data.premium);
-
-    document.querySelectorAll('[data-cmp="dims"]').forEach(el => { el.textContent = data.dims; });
-    document.querySelectorAll('[data-cmp="volume"]').forEach(el => { el.textContent = data.volume; });
-    document.querySelectorAll('[data-cmp="vol-bar"]').forEach(el => { el.style.width = data.volBar; });
-    document.querySelectorAll('[data-cmp="weight"]').forEach(el => { el.textContent = data.weight; });
-
-    const priceBase = document.querySelector('[data-cmp="price-base"]');
-    const priceStandart = document.querySelector('[data-cmp="price-standart"]');
-    const pricePremium = document.querySelector('[data-cmp="price-premium"]');
-    if (priceBase) priceBase.textContent = data.prices.base;
-    if (priceStandart) priceStandart.textContent = data.prices.standart;
-    if (pricePremium) {
-      pricePremium.textContent = data.prices.premium;
-      pricePremium.classList.toggle('cmp-na', !data.premium);
-    }
-
-    const featBase = document.querySelector('[data-cmp="feature-base"]');
-    const featStandart = document.querySelector('[data-cmp="feature-standart"]');
-    const featPremium = document.querySelector('[data-cmp="feature-premium"]');
-    if (featBase) featBase.textContent = data.features.base;
-    if (featStandart) featStandart.textContent = data.features.standart;
-    if (featPremium) {
-      featPremium.textContent = data.features.premium;
-      featPremium.classList.toggle('cmp-na', !data.premium);
-    }
-
-    const availBase = document.querySelector('[data-cmp="avail-base"]');
-    const availStandart = document.querySelector('[data-cmp="avail-standart"]');
-    const availPremium = document.querySelector('[data-cmp="avail-premium"]');
-    if (availBase) availBase.textContent = data.availability.base;
-    if (availStandart) availStandart.textContent = data.availability.standart;
-    if (availPremium) {
-      availPremium.textContent = data.availability.premium;
-      availPremium.classList.toggle('cmp-na', !data.premium);
-    }
-
-    document.querySelectorAll('[data-cmp-order]').forEach(link => {
-      const key = link.getAttribute('data-cmp-order');
-      const model = data.orders[key] || '';
-      link.dataset.model = model;
-      if (key === 'premium') {
-        link.classList.toggle('pointer-events-none', !data.premium);
-        link.classList.toggle('opacity-30', !data.premium);
-        link.setAttribute('aria-disabled', data.premium ? 'false' : 'true');
-        if (!data.premium) link.removeAttribute('href');
-        else link.setAttribute('href', '#order');
-      }
-    });
-
-    document.querySelectorAll('[data-cmp-premium]').forEach(el => {
-      el.classList.toggle('opacity-40', !data.premium);
-    });
-  }
-
   function selectModel(modelName) {
     const input = document.getElementById('modelInput');
     if (input && modelName) input.value = modelName;
@@ -1433,8 +1141,6 @@ SUPPORT
     };
     onScroll();
     window.addEventListener('scroll', onScroll, { passive: true });
-
-    setCompareSize('s');
   })();
 </script>
 </body>
