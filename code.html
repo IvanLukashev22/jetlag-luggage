@@ -516,17 +516,31 @@
   .cmp-swatch.rose { background: linear-gradient(135deg, #c9a089 0%, #e8c4ae 45%, #b8866c 100%); }
 
   .cmp-price {
-    font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-family: "Space Grotesk", "SF Pro Display", system-ui, sans-serif;
     font-weight: 700;
-    font-size: 1.25rem;
-    letter-spacing: -0.02em;
+    font-size: 1.75rem;
+    letter-spacing: -0.03em;
     white-space: nowrap;
+    color: #0a0a0a;
+    line-height: 1;
   }
 
   .size-card-price {
-    margin-top: 1.25rem;
-    padding-top: 1rem;
-    border-top: 1px solid #E5E5E5;
+    margin-top: 1.5rem;
+    padding: 1rem 0 0;
+    border-top: 2px solid #0a0a0a;
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  .size-card-price-label {
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #71717A;
   }
 
   .cmp-na {
@@ -932,7 +946,10 @@
 <li class="spec-row flex justify-between py-2.5 hairline-b"><span class="text-subtext">Вес</span><span>4.1 кг</span></li>
 <li class="spec-row flex justify-between py-2.5 hairline-b"><span class="text-subtext">Оттенки</span><span>Base · Standart · Premium</span></li>
 </ul>
-<p class="size-card-price cmp-price">от 38 000 ₽</p>
+<div class="size-card-price">
+<span class="size-card-price-label">Цена</span>
+<span class="cmp-price">от 38 000 ₽</span>
+</div>
 </article>
 
 <article class="size-card">
@@ -946,7 +963,10 @@
 <li class="spec-row flex justify-between py-2.5 hairline-b"><span class="text-subtext">Вес</span><span>5.8 кг</span></li>
 <li class="spec-row flex justify-between py-2.5 hairline-b"><span class="text-subtext">Оттенки</span><span>Base · Standart</span></li>
 </ul>
-<p class="size-card-price cmp-price">от 54 000 ₽</p>
+<div class="size-card-price">
+<span class="size-card-price-label">Цена</span>
+<span class="cmp-price">от 54 000 ₽</span>
+</div>
 </article>
 </div>
 
