@@ -412,7 +412,8 @@
     transition: transform 1.2s var(--ease-out-expo), filter 0.7s ease;
   }
 
-  .cat-item:hover .cat-media img {
+  .cat-item:hover .cat-media:not(.cat-gallery) img,
+  .cat-item:hover .cat-gallery img.is-active {
     transform: scale(1.06);
   }
 
@@ -425,6 +426,82 @@
   .cat-item.is-in .cat-rule,
   .cat-item:hover .cat-rule {
     transform: scaleX(1);
+  }
+
+  /* Catalog photo gallery */
+  .cat-gallery {
+    cursor: pointer;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .cat-gallery img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.45s var(--ease-out-expo), transform 1.2s var(--ease-out-expo);
+  }
+
+  .cat-gallery img.is-active {
+    opacity: 1;
+    z-index: 1;
+  }
+
+  .cat-gallery-nav {
+    position: absolute;
+    inset: 0;
+    z-index: 3;
+    display: flex;
+  }
+
+  .cat-gallery-nav button {
+    flex: 1;
+    border: 0;
+    background: transparent;
+    cursor: pointer;
+    padding: 0;
+  }
+
+  .cat-gallery-meta {
+    position: absolute;
+    right: 1rem;
+    bottom: 1rem;
+    z-index: 4;
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    pointer-events: none;
+  }
+
+  .cat-gallery-count {
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    color: #fff;
+    background: #000;
+    padding: 0.35rem 0.55rem;
+  }
+
+  .cat-gallery-dots {
+    display: flex;
+    gap: 0.35rem;
+    align-items: center;
+  }
+
+  .cat-gallery-dots span {
+    width: 5px;
+    height: 5px;
+    background: rgba(255, 255, 255, 0.45);
+    transition: background-color 0.3s ease, transform 0.3s var(--ease-out-expo);
+  }
+
+  .cat-gallery-dots span.is-active {
+    background: #fff;
+    transform: scale(1.15);
   }
 
   /* ——— Spec rows ——— */
@@ -894,9 +971,23 @@
 
 <article class="cat-item cat-s flex flex-col justify-between group reveal stagger-3">
 <div>
-<div class="cat-media bg-[#E8D5C4] aspect-[3/4] relative mb-6">
-<img alt="jetlag Premium розовое золото — ручная кладь" class="w-full h-full object-cover contrast-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCszta17TrlaT4VosOxWkh1OlvyZvS7HMELtkAdjRkuaqnmj5NHnIomCfDAUTkvvLPTyVc96JnHRX11Qn_JcolJ5o4kOXrSx40So58SbBmDQawXjAyQC9ckoThh4KUJKbIFHSjRnQyRKnjkTmnOylwx_1WuIkcS8oW06TTMr8y5KcYIK0nWdd5nKTJdFQ0CIIJS8uOneYbt46cdJREmILnj3ZbU7_WdX_Kp0AQ5700"/>
-<span class="absolute top-4 left-4 font-mono text-[10px] bg-black text-white px-2 py-1 uppercase tracking-wider">РУЧНАЯ КЛАДЬ</span>
+<div class="cat-media cat-gallery bg-[#E8D5C4] aspect-[3/4] relative mb-6" data-gallery aria-label="jetlag Premium — галерея">
+<img alt="jetlag Premium — вид спереди" class="is-active" data-gallery-img src="assets/catalog/premium/01-front.jpg" width="764" height="1024"/>
+<img alt="jetlag Premium — открытый чемодан" data-gallery-img src="assets/catalog/premium/02-open-flat.jpg" width="764" height="1024" loading="lazy"/>
+<img alt="jetlag Premium — ручка выдвинута" data-gallery-img src="assets/catalog/premium/03-handle-extended.jpg" width="764" height="1024" loading="lazy"/>
+<img alt="jetlag Premium — открыт стоя" data-gallery-img src="assets/catalog/premium/04-open-standing.jpg" width="764" height="1024" loading="lazy"/>
+<img alt="jetlag Premium — ракурс три четверти" data-gallery-img src="assets/catalog/premium/05-three-quarters.jpg" width="764" height="1024" loading="lazy"/>
+<span class="absolute top-4 left-4 z-[5] font-mono text-[10px] bg-black text-white px-2 py-1 uppercase tracking-wider">РУЧНАЯ КЛАДЬ</span>
+<div class="cat-gallery-nav" aria-hidden="true">
+<button type="button" data-gallery-prev tabindex="-1" aria-label="Предыдущее фото"></button>
+<button type="button" data-gallery-next tabindex="-1" aria-label="Следующее фото"></button>
+</div>
+<div class="cat-gallery-meta">
+<span class="cat-gallery-count"><span data-gallery-curr>01</span> / 05</span>
+<div class="cat-gallery-dots" data-gallery-dots aria-hidden="true">
+<span class="is-active"></span><span></span><span></span><span></span><span></span>
+</div>
+</div>
 </div>
 <span class="font-mono text-[10px] text-subtext uppercase tracking-widest block">53 × 35 × 21,5 СМ</span>
 <h3 class="text-xl font-bold font-display uppercase tracking-tight text-black mt-1">PREMIUM (РОЗОВОЕ ЗОЛОТО)</h3>
@@ -1070,15 +1161,15 @@
 <form class="space-y-4 max-w-md" id="conciergeForm" onsubmit="handleOrderSubmit(event)">
 <div>
 <label class="block font-mono text-[10px] text-subtext tracking-widest uppercase mb-1.5" for="nameInput">ВАШЕ ИМЯ</label>
-<input class="w-full bg-white border border-neutral-300 px-4 py-3.5 text-sm font-sans focus:outline-none focus:border-black transition-colors rounded-none" id="nameInput" placeholder="Алексей" required="" type="text"/>
+<input class="w-full bg-white border border-neutral-300 px-4 py-3.5 text-sm font-sans focus:outline-none focus:border-black transition-colors rounded-none" id="nameInput" name="Имя" placeholder="Алексей" required="" type="text" autocomplete="name"/>
 </div>
 <div>
 <label class="block font-mono text-[10px] text-subtext tracking-widest uppercase mb-1.5" for="phoneInput">НОМЕР ТЕЛЕФОНА</label>
-<input class="w-full bg-white border border-neutral-300 px-4 py-3.5 text-sm font-sans focus:outline-none focus:border-black transition-colors rounded-none" id="phoneInput" placeholder="+7 (999) 000-00-00" required="" type="tel"/>
+<input class="w-full bg-white border border-neutral-300 px-4 py-3.5 text-sm font-sans focus:outline-none focus:border-black transition-colors rounded-none" id="phoneInput" name="Телефон" placeholder="+7 (999) 000-00-00" required="" type="tel" autocomplete="tel"/>
 </div>
 <div>
 <label class="block font-mono text-[10px] text-subtext tracking-widest uppercase mb-1.5" for="modelInput">ВЫБРАННАЯ МОДЕЛЬ</label>
-<select class="w-full bg-white border border-neutral-300 px-4 py-3.5 text-sm font-mono focus:outline-none focus:border-black transition-colors rounded-none" id="modelInput">
+<select class="w-full bg-white border border-neutral-300 px-4 py-3.5 text-sm font-mono focus:outline-none focus:border-black transition-colors rounded-none" id="modelInput" name="Модель">
 <option value="BASE (ТИТАН) — РУЧНАЯ КЛАДЬ (14 900 ₽)">BASE (ТИТАН) — РУЧНАЯ КЛАДЬ (14 900 ₽)</option>
 <option value="STANDART (СЕРЕБРО) — РУЧНАЯ КЛАДЬ (16 900 ₽)">STANDART (СЕРЕБРО) — РУЧНАЯ КЛАДЬ (16 900 ₽)</option>
 <option value="PREMIUM (РОЗОВОЕ ЗОЛОТО) — РУЧНАЯ КЛАДЬ (18 900 ₽)">PREMIUM (РОЗОВОЕ ЗОЛОТО) — РУЧНАЯ КЛАДЬ (18 900 ₽)</option>
@@ -1086,12 +1177,12 @@
 <option value="STANDART (СЕРЕБРО) — БОЛЬШОЙ (24 900 ₽)">STANDART (СЕРЕБРО) — БОЛЬШОЙ (24 900 ₽)</option>
 </select>
 </div>
-<button class="btn-lux w-full py-4 bg-black text-white font-mono text-xs tracking-widest uppercase flex items-center justify-center gap-2 cursor-pointer" type="submit">
+<button class="btn-lux w-full py-4 bg-black text-white font-mono text-xs tracking-widest uppercase flex items-center justify-center gap-2 cursor-pointer" type="submit" id="orderSubmitBtn">
 <span>КУПИТЬ</span>
 <span class="btn-arrow">→</span>
 </button>
 <div class="hidden p-4 bg-black text-white font-mono text-xs leading-relaxed" id="statusMessage">
-[ПРИНЯТО] ВАША ЗАЯВКА ПОЛУЧЕНА. МЫ СВЯЖЕМСЯ В ТЕЧЕНИЕ 15 МИНУТ.
+ПРИНЯТО. ВАША ЗАЯВКА ПОЛУЧЕНА. МЫ СВЯЖЕМСЯ В ТЕЧЕНИЕ 15 МИНУТ.
 </div>
 </form>
 </div>
@@ -1144,17 +1235,103 @@ MAX
     }
   }
 
+  function initCatalogGalleries() {
+    document.querySelectorAll('[data-gallery]').forEach((gallery) => {
+      const imgs = Array.from(gallery.querySelectorAll('[data-gallery-img]'));
+      if (imgs.length < 2) return;
+
+      let index = Math.max(0, imgs.findIndex((img) => img.classList.contains('is-active')));
+      const currEl = gallery.querySelector('[data-gallery-curr]');
+      const dots = Array.from(gallery.querySelectorAll('[data-gallery-dots] span'));
+      const prevBtn = gallery.querySelector('[data-gallery-prev]');
+      const nextBtn = gallery.querySelector('[data-gallery-next]');
+      let touchX = null;
+
+      const show = (next) => {
+        index = (next + imgs.length) % imgs.length;
+        imgs.forEach((img, i) => img.classList.toggle('is-active', i === index));
+        dots.forEach((dot, i) => dot.classList.toggle('is-active', i === index));
+        if (currEl) currEl.textContent = String(index + 1).padStart(2, '0');
+      };
+
+      if (prevBtn) prevBtn.addEventListener('click', (e) => { e.preventDefault(); show(index - 1); });
+      if (nextBtn) nextBtn.addEventListener('click', (e) => { e.preventDefault(); show(index + 1); });
+
+      gallery.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowLeft') { e.preventDefault(); show(index - 1); }
+        if (e.key === 'ArrowRight') { e.preventDefault(); show(index + 1); }
+      });
+      gallery.tabIndex = 0;
+
+      gallery.addEventListener('touchstart', (e) => {
+        touchX = e.changedTouches[0].clientX;
+      }, { passive: true });
+
+      gallery.addEventListener('touchend', (e) => {
+        if (touchX == null) return;
+        const dx = e.changedTouches[0].clientX - touchX;
+        touchX = null;
+        if (Math.abs(dx) < 40) return;
+        show(index + (dx < 0 ? 1 : -1));
+      }, { passive: true });
+
+      show(index);
+    });
+  }
+
+  initCatalogGalleries();
+
   function selectModel(modelName) {
     const input = document.getElementById('modelInput');
     if (input && modelName) input.value = modelName;
   }
 
-  function handleOrderSubmit(e) {
+  async function handleOrderSubmit(e) {
     e.preventDefault();
+    const form = document.getElementById('conciergeForm');
     const status = document.getElementById('statusMessage');
+    const btn = document.getElementById('orderSubmitBtn');
+    if (!form || !btn) return;
+
+    const name = document.getElementById('nameInput').value.trim();
+    const phone = document.getElementById('phoneInput').value.trim();
+    const model = document.getElementById('modelInput').value;
+
+    btn.disabled = true;
+    btn.style.opacity = '0.6';
     if (status) {
-      status.classList.remove('hidden');
-      document.getElementById('conciergeForm').reset();
+      status.classList.add('hidden');
+      status.textContent = 'ПРИНЯТО. ВАША ЗАЯВКА ПОЛУЧЕНА. МЫ СВЯЖЕМСЯ В ТЕЧЕНИЕ 15 МИНУТ.';
+    }
+
+    try {
+      const res = await fetch('https://formsubmit.co/ajax/Romaromas@mail.ru', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json'
+        },
+        body: JSON.stringify({
+          Имя: name,
+          Телефон: phone,
+          Модель: model,
+          _subject: 'Jetlag — новая заявка на покупку',
+          _template: 'table'
+        })
+      });
+
+      if (!res.ok) throw new Error('send failed');
+
+      if (status) status.classList.remove('hidden');
+      form.reset();
+    } catch (err) {
+      if (status) {
+        status.textContent = '[ОШИБКА] НЕ УДАЛОСЬ ОТПРАВИТЬ ЗАЯВКУ. НАПИШИТЕ НАМ В TELEGRAM ИЛИ WHATSAPP.';
+        status.classList.remove('hidden');
+      }
+    } finally {
+      btn.disabled = false;
+      btn.style.opacity = '';
     }
   }
 
