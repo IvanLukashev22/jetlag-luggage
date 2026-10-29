@@ -154,22 +154,13 @@
 
     h2.order-heading {
       white-space: nowrap;
-      letter-spacing: -0.045em;
+      letter-spacing: -0.04em;
       max-width: 100%;
-    }
-  }
-
-  @media (min-width: 640px) and (max-width: 767px) {
-    h2.order-heading {
-      font-size: calc((100vw - 5rem) / 10.6) !important;
+      display: block;
     }
   }
 
   @media (max-width: 639px) {
-    h2.order-heading {
-      font-size: calc((100vw - 3rem) / 10.6) !important;
-    }
-
     .hero-screen {
       height: auto;
       max-height: none;
@@ -1062,9 +1053,11 @@
 <a class="inline-block group mb-6" href="#">
 <span class="wordmark-jetlag text-3xl tracking-tightest lowercase text-black">jetlag</span>
 </a>
+<div class="order-heading-wrap max-w-md w-full">
 <h2 class="order-heading text-3xl sm:text-4xl font-bold font-display uppercase tracking-tight text-black">
 КУПИТЬ НАШ ПРОДУКТ
 </h2>
+</div>
 <p class="text-sm text-subtext mt-3 font-sans max-w-lg leading-relaxed">
 Бесплатная доставка в любую точку России удобным для вас способом.
 </p>
@@ -1201,6 +1194,36 @@ MAX
     };
     onScroll();
     window.addEventListener('scroll', onScroll, { passive: true });
+
+    // Mobile: size "КУПИТЬ НАШ ПРОДУКТ" to the same width as the buy button/form
+    const orderHeading = document.querySelector('h2.order-heading');
+    const orderForm = document.getElementById('conciergeForm');
+    const fitOrderHeading = () => {
+      if (!orderHeading || !orderForm) return;
+      if (window.matchMedia('(min-width: 768px)').matches) {
+        orderHeading.style.fontSize = '';
+        return;
+      }
+      const target = orderForm.getBoundingClientRect().width;
+      if (!target) return;
+      orderHeading.style.whiteSpace = 'nowrap';
+      orderHeading.style.display = 'inline-block';
+      let lo = 12;
+      let hi = 42;
+      for (let i = 0; i < 24; i++) {
+        const mid = (lo + hi) / 2;
+        orderHeading.style.fontSize = mid + 'px';
+        if (orderHeading.scrollWidth <= target) lo = mid;
+        else hi = mid;
+      }
+      orderHeading.style.fontSize = lo + 'px';
+      orderHeading.style.display = 'block';
+    };
+    fitOrderHeading();
+    if (document.fonts && document.fonts.ready) {
+      document.fonts.ready.then(fitOrderHeading);
+    }
+    window.addEventListener('resize', fitOrderHeading, { passive: true });
   })();
 </script>
 </body>
