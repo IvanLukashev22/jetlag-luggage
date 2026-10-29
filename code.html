@@ -135,6 +135,28 @@
     .hero-screen {
       --header-h: 4rem;
     }
+
+    /* Android: sticky + backdrop-blur often fails — pin header */
+    header.site-header {
+      position: fixed !important;
+      top: 0;
+      left: 0;
+      right: 0;
+      width: 100%;
+      z-index: 50;
+      -webkit-backface-visibility: hidden;
+      backface-visibility: hidden;
+    }
+
+    body {
+      padding-top: 4rem;
+    }
+
+    .order-heading {
+      white-space: nowrap;
+      font-size: clamp(1.35rem, 6.8vw, 1.875rem);
+      letter-spacing: -0.045em;
+    }
   }
 
   @media (max-width: 639px) {
@@ -664,10 +686,10 @@
 <section class="hero-screen w-full relative hairline-b grain">
 <div class="hero-screen-inner max-w-[1680px] mx-auto px-6 sm:px-10 lg:px-16 w-full py-3 md:py-4 lg:py-5">
 <!-- Meta Header Line -->
-<div class="reveal flex flex-col sm:flex-row sm:items-center justify-between font-mono text-[10px] md:text-[11px] tracking-widest text-subtext uppercase pb-2 md:pb-3 hairline-b gap-1.5 shrink-0">
+<div class="reveal flex flex-row items-center justify-between font-mono text-[10px] md:text-[11px] tracking-widest text-subtext uppercase pb-2 md:pb-3 hairline-b gap-2 shrink-0">
 <span>(00 / ВВЕДЕНИЕ)</span>
 <span class="hidden sm:inline">МОСКВА — ТОКИО — НЬЮ-ЙОРК</span>
-<span class="text-black font-medium">[ 100% АЛЮМИНИЙ ]</span>
+<span class="text-black font-medium shrink-0">[ 100% АЛЮМИНИЙ ]</span>
 </div>
 
 <!-- Big Headline Hero Statement — wordmark matches header logo -->
@@ -1030,7 +1052,7 @@
 <a class="inline-block group mb-6" href="#">
 <span class="wordmark-jetlag text-3xl tracking-tightest lowercase text-black">jetlag</span>
 </a>
-<h2 class="text-3xl sm:text-4xl font-bold font-display uppercase tracking-tight text-black">
+<h2 class="order-heading text-3xl sm:text-4xl font-bold font-display uppercase tracking-tight text-black">
 КУПИТЬ НАШ ПРОДУКТ
 </h2>
 <p class="text-sm text-subtext mt-3 font-sans max-w-lg leading-relaxed">
