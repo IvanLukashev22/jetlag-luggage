@@ -154,12 +154,22 @@
 
     h2.order-heading {
       white-space: nowrap;
-      font-size: clamp(1.15rem, 5.6vw, 1.55rem) !important;
-      letter-spacing: -0.05em;
+      letter-spacing: -0.045em;
+      max-width: 100%;
+    }
+  }
+
+  @media (min-width: 640px) and (max-width: 767px) {
+    h2.order-heading {
+      font-size: calc((100vw - 5rem) / 10.6) !important;
     }
   }
 
   @media (max-width: 639px) {
+    h2.order-heading {
+      font-size: calc((100vw - 3rem) / 10.6) !important;
+    }
+
     .hero-screen {
       height: auto;
       max-height: none;
