@@ -302,11 +302,13 @@
     min-height: 0;
   }
 
-  .hero-visual img {
+  .hero-visual img,
+  .hero-visual video {
     transition: transform 1.8s var(--ease-out-expo), filter 0.8s ease;
   }
 
-  .hero-visual:hover img {
+  .hero-visual:hover img,
+  .hero-visual:hover video {
     transform: scale(1.04);
     filter: grayscale(0.85) brightness(1) contrast(1.2);
   }
@@ -715,17 +717,15 @@
 <div class="hero-stage gap-4 md:gap-6 lg:gap-8 mt-1">
 <div class="relative bg-neutral-900 overflow-hidden group hero-visual reveal-scale min-h-0">
 <video
+  id="heroVideo"
   class="w-full h-full object-cover grayscale brightness-95 contrast-125"
-  autoplay
   muted
   loop
   playsinline
-  preload="auto"
-  poster="assets/hero-jetlag-workshop.jpg"
-  aria-label="jetlag — сборка алюминиевого чемодана в мастерской"
->
-<source src="assets/hero-workshop.mp4" type="video/mp4"/>
-</video>
+  preload="metadata"
+  poster="assets/hero-jetlag-workshop-poster.jpg"
+  aria-label="jetlag — алюминиевый чемодан в мастерской"
+></video>
 <div class="scan"></div>
 </div>
 
@@ -1197,6 +1197,30 @@ MAX
     };
     onScroll();
     window.addEventListener('scroll', onScroll, { passive: true });
+
+    // Hero video: light mobile file (~0.4MB), heavier desktop (~1.6MB)
+    const heroVideo = document.getElementById('heroVideo');
+    if (heroVideo) {
+      const conn = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+      const isMobile = window.matchMedia('(max-width: 767px)').matches;
+      const saveData = !!(conn && conn.saveData);
+      const slowNet = !!(conn && /2g/.test(conn.effectiveType || ''));
+      const useMobile = isMobile || saveData || slowNet;
+      const src = useMobile
+        ? 'assets/hero-workshop-mobile.mp4'
+        : 'assets/hero-workshop-desk.mp4';
+      heroVideo.preload = useMobile ? 'metadata' : 'auto';
+      const source = document.createElement('source');
+      source.src = src;
+      source.type = 'video/mp4';
+      heroVideo.appendChild(source);
+      heroVideo.load();
+      const tryPlay = () => {
+        heroVideo.play().catch(() => {});
+      };
+      if (heroVideo.readyState >= 2) tryPlay();
+      else heroVideo.addEventListener('loadeddata', tryPlay, { once: true });
+    }
 
     // Mobile: size "КУПИТЬ НАШ ПРОДУКТ" to the same width as the buy button/form
     const orderHeading = document.querySelector('h2.order-heading');
